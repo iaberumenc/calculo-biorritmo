@@ -1,0 +1,166 @@
+﻿<UserControl x:Class="Calculo_Biorritmo.Screens.Home.HomeView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Calculo_Biorritmo.Screens.Home"
+             mc:Ignorable="d" 
+             d:DesignHeight="600" d:DesignWidth="800">
+    <Border CornerRadius="0 30 30 0" Background="White">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition/>
+                <RowDefinition Height="30"/>
+            </Grid.RowDefinitions>
+
+            <Border CornerRadius="0 30 0 0" Background="{StaticResource PrimaryHuePrincipal}">
+                <Grid >
+                    <Label 
+                HorizontalAlignment="Center"
+                Content="INICIO"
+                FontSize="22"
+                FontWeight="Bold"
+                Foreground="White"/>
+                </Grid>
+            </Border>
+            
+
+            <Grid Grid.Row="1" Margin="0 0 10 0">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height=".3*"/>
+                    <RowDefinition Height=".6*"/>
+                </Grid.RowDefinitions>
+                <Grid >
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition/>
+                        <ColumnDefinition/>
+                    </Grid.ColumnDefinitions>
+                    <Grid>
+                        <Border  Margin="10"
+                         Background="#f26d7c"
+                         CornerRadius="10">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height=".6*"/>
+                                    <RowDefinition Height=".4*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0"  Grid.Row="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Label Grid.Row="0"
+                               HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                               Margin="15,0"
+                               Style="{StaticResource StartTitleWhite}" FontSize="26" >Número de</Label>
+                                    <Label Grid.Row="1"
+                               HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                               Margin="15,0"
+                               Style="{StaticResource StartTitleWhite}" FontSize="26" >accidentes</Label>
+                                </Grid>
+                                <Label Name="lbAccidentNum"
+                               Style="{StaticResource StartTitleRegularWhite}" FontSize="30"
+                               Grid.Column="0"  Grid.Row="1" Content="0"
+                               HorizontalAlignment="Left" VerticalAlignment="Top"
+                               Margin="20,0,0,0"/>
+                                <Grid Grid.Column="1" Grid.RowSpan="2">
+                                    <Image Source="/Resources/Images/Stats.png" VerticalAlignment="Bottom"  />
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+
+                    <Grid Grid.Column="1">
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="27*"/>
+                            <RowDefinition Height="41*"/>
+                        </Grid.RowDefinitions>
+                        <Border  Margin="10,10,0,9.8"
+                         Background="{StaticResource PrimaryBlueGreen}"
+                         CornerRadius="10" Grid.RowSpan="2">
+                            <Grid>
+                                <Grid.RowDefinitions>
+                                    <RowDefinition Height=".6*"/>
+                                    <RowDefinition Height=".4*"/>
+                                </Grid.RowDefinitions>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="2*" />
+                                    <ColumnDefinition Width="1*" />
+                                </Grid.ColumnDefinitions>
+                                <Grid Grid.Column="0" Grid.Row="0">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Label 
+                               HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                               Margin="15,0"
+                               Style="{StaticResource StartTitleWhite}" FontSize="26">Empleados</Label>
+                                    <Label Grid.Row="1"
+                               HorizontalAlignment="Left" VerticalAlignment="Bottom"
+                               Margin="15,0"
+                               Style="{StaticResource StartTitleWhite}" FontSize="26">registrados</Label>
+                                </Grid>
+
+                                <Label Name="lbEmployeeNum"
+                                   Content="0"
+                               Grid.Column="0"
+                               Grid.Row="1"
+                               HorizontalAlignment="Left" VerticalAlignment="Top"
+                               Margin="20,0,0,0"
+                               Style="{StaticResource StartTitleRegularWhite}" FontSize="30"/>
+                                <Grid Grid.Column="1"
+                              Grid.RowSpan="2">
+                                    <Image Source="/Resources/Images/userFriends.png" VerticalAlignment="Bottom" />
+                                </Grid>
+                            </Grid>
+                        </Border>
+                    </Grid>
+                </Grid>
+
+                <Grid Grid.Row="1">
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="auto"/>
+                        <RowDefinition/>
+                        <RowDefinition Height="auto"/>
+                    </Grid.RowDefinitions>
+                    <Label HorizontalAlignment="Center" Style="{StaticResource TitleInformation}" Content="Empleados en riesgo"/>
+                    <Grid  Grid.Row="1" Margin="20 10">
+                        <DataGrid Name ="empleado" 
+                    IsReadOnly="True"
+                    AutoGenerateColumns="False"
+                    CanUserResizeRows="False"
+                    CanUserResizeColumns="False"
+                    CanUserReorderColumns="False"
+                    CanUserSortColumns="False"
+                      ColumnHeaderStyle="{StaticResource ColumnHeaderStyle1}"
+                      Foreground="{StaticResource PrimaryText}">
+                            <DataGrid.Columns>
+                                <DataGridTextColumn Width="*" Header="Curp" Binding="{Binding curp}" />
+                                <DataGridTextColumn Width="110" Header="Fisico" Binding="{Binding residuo_fisico}" />
+                                <DataGridTextColumn Width="120" Header="Emocional" Binding="{Binding residuo_emocional}" />
+                                <DataGridTextColumn Width="120" Header="Intelectual" Binding="{Binding residuo_intelectual}" />
+                                <DataGridTextColumn Width="120" Header="Intuicional" Binding="{Binding residuo_intuicional}" />
+                            </DataGrid.Columns>
+                        </DataGrid>
+                    </Grid>
+                    <StackPanel Margin="0 0 20 0" Orientation="Horizontal" HorizontalAlignment="Right" Grid.Row="2" >
+                        <Label 
+                       Content="Total: "/>
+                        <Label 
+                        Name="lbltotalRiskEmployees"
+                        Content="0"/>
+                    </StackPanel>
+
+                </Grid>
+            </Grid>
+
+        </Grid>
+    </Border>
+    
+</UserControl>

@@ -1,0 +1,67 @@
+﻿<UserControl x:Class="Calculo_Biorritmo.Screens.Calculate.BiorytmResults.EmployeeBiorytm"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Calculo_Biorritmo.Screens.Calculate.BiorytmResults" xmlns:oxy="http://oxyplot.org/wpf"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Border CornerRadius="0 30 30 0" Background="White">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition/>
+                <RowDefinition Height="AUTO"/>
+            </Grid.RowDefinitions>
+
+            <Border CornerRadius="0 30 0 0" Background="{StaticResource PrimaryHuePrincipal}">
+                <Grid >
+                    <Label 
+                HorizontalAlignment="Center"
+                Content="Resultados"
+                FontSize="22"
+                FontWeight="Bold"
+                Foreground="White"/>
+                </Grid>
+            </Border>
+            <Grid Grid.Row="1">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="150"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
+                <StackPanel Margin="0 20 0 0">
+                    <Label Content="Biorritmos" Style="{StaticResource StartTitle}"/>
+                    <StackPanel Orientation="Horizontal">
+                        <StackPanel>
+                            <Label/>
+                            <Label Name="lblFisicBiorytm" FontWeight="Bold"/>
+                            <Label Name="lblEmotionalBiorytm" FontWeight="Bold"/>
+                            <Label Name="lblIntelectualBiorytm" FontWeight="Bold"/>
+                            <Label Name="lblIntuitionalBiorytm" FontWeight="Bold"/>
+                        </StackPanel>
+                    </StackPanel>
+                    <StackPanel Margin="0 20 0 0">
+                        <Label Content="Criticos" Style="{StaticResource TitleInformation}" FontWeight="Bold"/>
+                        <Label Name="lblFisicCritic" Foreground="Green" FontWeight="Bold"/>
+                        <Label Name="lblEmotionalCritic" Foreground="Green" FontWeight="Bold"/>
+                        <Label Name="lblIntelectualCritic" Foreground="Green" FontWeight="Bold"/>
+                        <Label Name="lblIntuitionalCritic" Foreground="Green" FontWeight="Bold"/>
+                    </StackPanel>
+                </StackPanel>
+                <oxy:PlotView Name="asd" Grid.Column="1" Margin="0 0 20 30"/>
+            </Grid>
+            
+            <StackPanel Grid.Row="2" Orientation="Horizontal" Margin="10" HorizontalAlignment="Right">
+                <Button 
+                    Name="BtnRegresar"
+                    Margin="10"
+                    Style="{StaticResource RoundedButtonGray}"
+                    Content="Regresar"
+                    Padding="10 0"
+                    Width="150"
+                    Height="50"
+                    Click="BtnRegresar_Click"/>
+            </StackPanel>
+        </Grid>
+    </Border>
+</UserControl>

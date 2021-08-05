@@ -1,0 +1,243 @@
+﻿<Application x:Class="Calculo_Biorritmo.App"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:local="clr-namespace:Calculo_Biorritmo"
+             Startup="Application_Startup"
+             StartupUri="MainWindow.xaml">
+    <Application.Resources>
+        <ResourceDictionary>
+            <SolidColorBrush x:Key="PrimaryHuePrincipal" Color="#444854" ></SolidColorBrush>
+            <SolidColorBrush x:Key="PrimaryHueWhite" Color="#F4F3F8"></SolidColorBrush>
+            <SolidColorBrush x:Key="PrimaryHueRealWhite" Color="#FFFFFF"></SolidColorBrush>
+            <SolidColorBrush x:Key="PrimaryHueDark" Color="#2C2D54"></SolidColorBrush>
+            <SolidColorBrush x:Key="PrimaryHueDarkMidDark" Color="#020587"></SolidColorBrush>
+            <SolidColorBrush x:Key="PrimaryHueDarkMidLight" Color="#B4B6FE" ></SolidColorBrush>
+            <SolidColorBrush x:Key="RowColorGrayLight" Color="#EEEEEE" ></SolidColorBrush>
+            <SolidColorBrush x:Key="PrimaryGray" Color="WhiteSmoke"></SolidColorBrush>
+            <SolidColorBrush x:Key="PrimaryGreen" Color="#0BE400" ></SolidColorBrush>
+            <SolidColorBrush x:Key="PrimaryDarkGreen" Color="#21CF91" ></SolidColorBrush>
+            <SolidColorBrush x:Key="PrimaryBlueGreen" Color="#54DEAD" ></SolidColorBrush>
+            <SolidColorBrush x:Key="DataCellBlue" Color="LightSkyBlue" ></SolidColorBrush>
+            <SolidColorBrush x:Key="DataCellRed" Color="#FF6060" ></SolidColorBrush>
+            <SolidColorBrush x:Key="PrimaryText" Color="#444854" ></SolidColorBrush>
+            <SolidColorBrush x:Key="PrimaryTextLigth" Color="#5E5E5E" ></SolidColorBrush>
+            <SolidColorBrush x:Key="PrimaryShadowLigth" Color="LightGray" ></SolidColorBrush>
+
+            <SolidColorBrush x:Key="SecondaryHueLightBrush" Color="#65E891"></SolidColorBrush>
+            <SolidColorBrush x:Key="SecondaryHueLightForegroundBrush" Color="#65E891" ></SolidColorBrush>
+            <SolidColorBrush x:Key="SecondaryHueMidBrush" Color="#21DB60"></SolidColorBrush>
+            <SolidColorBrush x:Key="SecondaryHueMidForegroundBrush" Color="#DCFCE7" ></SolidColorBrush>
+            <SolidColorBrush x:Key="SecondaryHueBannerBrush" Color="#71D1E3" ></SolidColorBrush>
+            <SolidColorBrush x:Key="SecondaryHueDarkBrush" Color="#005A1E"></SolidColorBrush>
+            <SolidColorBrush x:Key="SecondaryHueDarkForegroundBrush" Color="#00B23C" Opacity="0.83" ></SolidColorBrush>
+
+            <SolidColorBrush x:Key="Red" Color="#F26D7C" ></SolidColorBrush>
+
+            <SolidColorBrush x:Key="Yellow" Color="#FACF5A" ></SolidColorBrush>
+            <SolidColorBrush x:Key="Blue" Color="#71D1E3" ></SolidColorBrush>
+            <SolidColorBrush x:Key="Green" Color="#54DEAD" ></SolidColorBrush>
+            <SolidColorBrush x:Key="GrayLigth" Color="#B4B4B4" ></SolidColorBrush>
+            <SolidColorBrush x:Key="GrayDark" Color="#505050" ></SolidColorBrush>
+            <SolidColorBrush x:Key="BlueLigth" Color="#71D1E3" ></SolidColorBrush>
+            <SolidColorBrush x:Key="DarkBlue" Color="#0D859C" ></SolidColorBrush>
+
+            <SolidColorBrush x:Key="Deactivated" Color="Gray" Opacity="0.83"></SolidColorBrush>
+            <Style TargetType="Button" x:Key="RoundedButton">
+                <Setter Property="Height" Value="Auto"/>
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="10"  Background="{TemplateBinding Background}" BorderBrush="{x:Null}"  BorderThickness="{TemplateBinding BorderThickness}" >
+                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                                  Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"
+                                                  
+                                                  Margin="{TemplateBinding Padding}"  VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+                <Setter Property= "Foreground" Value="#FFFFFF" />
+                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}"  />
+                <Setter Property="FontSize" Value="22"  />
+                <Setter Property="FontWeight" Value="SemiBold" />
+                <Style.Triggers>
+                    <Trigger Property="IsMouseOver" Value="True">
+                        <Setter Property="Cursor" Value="Hand"/>
+                    </Trigger>
+                    <Trigger Property="IsEnabled" Value="False">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="Button">
+                                    <Border CornerRadius="10" Background="{StaticResource Deactivated}" Opacity="0.35" BorderBrush="{x:Null}"  BorderThickness="{TemplateBinding BorderThickness}" >
+                                        <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                                  Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"                                                  
+                                                  Margin="{TemplateBinding Padding}" VerticalAlignment="{TemplateBinding VerticalContentAlignment}"/>
+                                    </Border>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                        <!--<Setter Property="Background" Value="{StaticResource Deactivated}"/>-->
+                        <Setter Property="Foreground" Value="{StaticResource PrimaryHueWhite}"/>
+                    </Trigger>
+                </Style.Triggers>
+            </Style>
+            <Style TargetType="Button" x:Key="RoundedButtonBlue" BasedOn="{StaticResource RoundedButton}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="10" Background="{StaticResource SecondaryHueBannerBrush}" BorderThickness="0" BorderBrush="{TemplateBinding BorderBrush}" Padding="0 3">
+                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                                  Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"                                                  
+                                                  Margin="{TemplateBinding Padding}" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style TargetType="Button" x:Key="RoundedButtonGray" BasedOn="{StaticResource RoundedButton}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="10" Background="LightGray" BorderThickness="0" BorderBrush="{TemplateBinding BorderBrush}" Padding="0 3">
+                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                                  Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"                                                  
+                                                  Margin="{TemplateBinding Padding}" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style TargetType="Button" x:Key="RoundedButtonGreen" BasedOn="{StaticResource RoundedButton}">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="Button">
+                            <Border CornerRadius="10" Background="{StaticResource PrimaryBlueGreen}" BorderThickness="0" BorderBrush="{TemplateBinding BorderBrush}" Padding="0 3">
+                                <ContentPresenter x:Name="contentPresenter" ContentTemplate="{TemplateBinding ContentTemplate}" 
+                                                  Content="{TemplateBinding Content}" HorizontalAlignment="{TemplateBinding HorizontalContentAlignment}"                                                  
+                                                  Margin="{TemplateBinding Padding}" VerticalAlignment="Center"/>
+                            </Border>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Style>
+
+            <Style x:Key="StartTitle" TargetType="Label">
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}"/>
+                <Setter Property="Foreground" Value="#5E5E5E" />
+                <Setter Property="FontWeight" Value="Bold" />
+            </Style>
+            <Style x:Key="StartTitleWhite" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}" />
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="Foreground" Value="#FFFFFF" />
+                <Setter Property="FontWeight" Value="Bold" />
+            </Style>
+            <Style x:Key="StartTitleRegularWhite" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}" />
+                <Setter Property="FontSize" Value="20" />
+                <Setter Property="Foreground" Value="#FFFFFF" />
+                <Setter Property="FontWeight" Value="Regular" />
+            </Style>
+            <!--Contenido Informativo-->
+            <Style x:Key="InformationContentWhite" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Foreground" Value="#FFFFFF" />
+                <Setter Property="FontWeight" Value="Medium" />
+            </Style>
+            <Style x:Key="ShortcutsContentWhite" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}" />
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Foreground" Value="#FFFFFF" />
+                <Setter Property="FontWeight" Value="Medium" />
+            </Style>
+            <Style x:Key="ShortcutsContentGreen" TargetType="Label" BasedOn="{StaticResource ShortcutsContentWhite}" >
+                <Setter Property="Foreground" Value="{StaticResource PrimaryDarkGreen}" />
+                <Setter Property="Padding" Value="0"/>
+                <Setter Property="HorizontalContentAlignment" Value="Left"/>
+                <Setter Property="FontSize" Value="14" />
+            </Style>
+            <Style x:Key="InformationContent" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}"/>
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Foreground" Value="{StaticResource PrimaryHuePrincipal}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+            <Style x:Key="InformationContentBlockWhite" TargetType="TextBlock">
+                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}"/>
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="VerticalAlignment" Value="Center"/>
+                <Setter Property="HorizontalAlignment" Value="Center"/>
+                <Setter Property="Foreground" Value="{StaticResource PrimaryHueRealWhite}" />
+                <Setter Property="FontWeight" Value="Normal" />
+            </Style>
+
+            <Style x:Key="TitleInformation" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}"/>
+                <Setter Property="FontSize" Value="18" />
+                <Setter Property="Foreground" Value="#5E5E5E" />
+                <Setter Property="FontWeight" Value="Bold" />
+            </Style>
+            <Style x:Key="TitleInformationCanceled" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}"/>
+                <Setter Property="FontSize" Value="40" />
+                <Setter Property="Foreground" Value="Red" />
+                <Setter Property="FontWeight" Value="Bold" />
+            </Style>
+
+            <Style x:Key="ContentMarked" TargetType="Label">
+                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}"/>
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Foreground" Value="{StaticResource PrimaryHuePrincipal}" />
+                <Setter Property="FontWeight" Value="Bold" />
+            </Style>
+
+            <Style TargetType="Grid" x:Key="GridWhite">
+                <Setter Property="Margin" Value="6"/>
+                <Setter Property="Background" Value="White"/>
+            </Style>
+
+            <Style x:Key="ColumnHeaderStyle1" TargetType="DataGridColumnHeader">
+                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}"/>
+                <Setter Property="FontSize" Value="16" />
+                <Setter Property="Padding" Value="12"/>
+                <Setter Property="Background" Value="{StaticResource PrimaryHueRealWhite}"/>
+                <Setter Property="Foreground" Value="{StaticResource PrimaryText}" />
+                <Setter Property="FontWeight" Value="Bold" />
+            </Style>
+
+            <CornerRadius x:Key="BorderRadius"/>
+            <Style TargetType="Border" x:Key="BorderTitleModal">
+                <Setter Property="CornerRadius" Value="32,32,0,0"/>
+                <Setter Property="Background" Value="{StaticResource SecondaryHueBannerBrush}"/>
+                <Setter Property="Opacity" Value="1"/>
+            </Style>
+            <Style TargetType="Label" x:Key="LabelTitleModal" >
+                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="FontSize" Value="40" />
+                <Setter Property="Foreground" Value="{StaticResource PrimaryHueRealWhite}" />
+            </Style>
+            <Style TargetType="Border" x:Key="BorderSquare">
+                <Setter Property="CornerRadius" Value="32,32,0,0"/>
+                <Setter Property="BorderBrush" Value="{StaticResource GrayLigth}"/>
+                <Setter Property="BorderThickness" Value="1,1,1,1"/>
+            </Style>
+            <Style TargetType="Border" x:Key="BorderTitleSquare">
+                <Setter Property="CornerRadius" Value="32,32,0,0"/>
+                <Setter Property="Background" Value="{StaticResource GrayLigth}"/>
+                <Setter Property="Opacity" Value="1"/>
+            </Style>
+            <Style TargetType="Label" x:Key="LabelTitleSquare" >
+                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}" />
+                <Setter Property="FontWeight" Value="Bold" />
+                <Setter Property="FontSize" Value="30" />
+                <Setter Property="Foreground" Value="{StaticResource PrimaryHueRealWhite}" />
+            </Style>
+
+        </ResourceDictionary>
+    </Application.Resources>
+</Application>

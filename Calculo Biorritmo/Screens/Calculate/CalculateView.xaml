@@ -1,0 +1,153 @@
+﻿<UserControl x:Class="Calculo_Biorritmo.Screens.Calculate.CalculateView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Calculo_Biorritmo.Screens.Calculate"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Border Background="White" CornerRadius="0 30 30 0">
+        <Grid Name="mainGrid" >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition/>
+                <RowDefinition Height="AUTO"/>
+            </Grid.RowDefinitions>
+            <Border Background="{StaticResource PrimaryHuePrincipal}" CornerRadius="0 30 0 0">
+                <Grid >
+                    <Label 
+                HorizontalAlignment="Center"
+                Content="CALCULAR"
+                FontSize="22"
+                FontWeight="Bold"
+                Foreground="White"/>
+                    
+                </Grid>
+            </Border>
+            
+            <Grid Grid.Row="1">
+                <TextBlock
+            Text="Para calcular el biorritmo, escribe el CURP del empleado y presionar el boton de buscar o la tecla enter"
+                TextWrapping="Wrap"
+                Margin="20"
+                Style="{StaticResource InformationContent}"/>
+            </Grid>
+            <Grid Name="gridForm" Grid.Row="2" Margin="20 0">
+                <StackPanel>
+                    <Grid>
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="AUTO"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <StackPanel Orientation="Vertical">
+
+                            <Label Style="{StaticResource TitleInformation}"  Margin="20,0">CURP</Label>
+                            <Border Background="White" CornerRadius="10" Width="280" BorderBrush="LightGray" BorderThickness="1 1 2 4">
+                                <TextBox Name="tbCurp" 
+                             MaxLength="18" 
+                             Height="20"
+                             BorderThickness="0"
+                             Margin="6" 
+                             HorizontalAlignment="Center"
+                             Width="230"
+                            KeyDown="tbId_KeyDown"
+                             TextAlignment="Center" 
+                             FontWeight="Bold" 
+                             FontSize="16"
+                             Text="{Binding curp}"/>
+                            </Border>
+
+                        </StackPanel>
+                        <Button
+                        Name="btnSearch"
+                        Style="{StaticResource RoundedButtonBlue}"
+                        Grid.Column="1"
+                        Margin="15 5 15 0"
+                        Content="Buscar"
+                        Width="100"
+                        VerticalAlignment="Bottom"
+                        HorizontalAlignment="Left"
+                        Click="btnSearch_Click"/>
+                    </Grid>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Style="{StaticResource TitleInformation}"  Margin="20,0">Accidentes registrados</Label>
+                        <Border Background="LightGray" CornerRadius="10" Width="280" HorizontalAlignment="Left" BorderBrush="LightGray" BorderThickness="1 1 2 4">
+                            <TextBox Name="tbAccidentes" 
+                                     Background="LightGray" 
+                             MaxLength="10" 
+                             Height="20"
+                             BorderThickness="0"
+                             Margin="6" 
+                             IsEnabled="False"
+                             Width="230"
+                             TextAlignment="Center" 
+                             FontWeight="Bold" 
+                             FontSize="16"/>
+                        </Border>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Style="{StaticResource TitleInformation}"  Margin="20,0">Fecha de nacimiento</Label>
+                        <Border Background="LightGray" CornerRadius="10" Width="280" HorizontalAlignment="Left" BorderBrush="LightGray" BorderThickness="1 1 2 4">
+                            <TextBox Name="tbFechaNacimiento" 
+                                     Background="LightGray" 
+                             MaxLength="10" 
+                             Height="20"
+                             BorderThickness="0"
+                             Margin="6" 
+                             IsEnabled="False"
+                             Width="230"
+                             TextAlignment="Center" 
+                             FontWeight="Bold" 
+                             FontSize="16"/>
+                        </Border>
+                    </StackPanel>
+
+                    <StackPanel Orientation="Vertical">
+                        <Label Style="{StaticResource TitleInformation}"  Margin="20,0">Dias Vividos</Label>
+                        <Border Background="LightGray" CornerRadius="10" Width="280" HorizontalAlignment="Left" BorderBrush="LightGray" BorderThickness="1 1 2 4">
+                            <TextBox Name="tbDiasVividos"
+                                     Background="LightGray" 
+                             MaxLength="10" 
+                             Height="20"
+                             BorderThickness="0"
+                             Margin="6" 
+                             IsEnabled="False"
+                             Width="230"
+                             TextAlignment="Center" 
+                             FontWeight="Bold" 
+                             FontSize="16"/>
+                        </Border>
+                    </StackPanel>
+
+                </StackPanel>
+
+
+            </Grid>
+            <Grid Grid.Row="3">
+                <StackPanel Margin="30 20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+                    <Button Name="btnClean" 
+                    Style="{StaticResource RoundedButtonGray}"
+                    Content="Limpiar campos" 
+                    HorizontalAlignment="Left" 
+                    Padding="20 0"
+                    Height="50" 
+                    Margin="20 0"
+                    Click="btnClean_Click"/>
+                    <Button Name="btnCalculate" 
+                    Style="{StaticResource RoundedButtonGreen}"
+                    Content="Calcular" 
+                    HorizontalAlignment="Left" 
+                        IsEnabled="False"
+                    Padding="20 0"
+                    Height="50" 
+                    Click="btnCalculate_Click"/>
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+    </Border>
+    
+</UserControl>

@@ -1,0 +1,91 @@
+﻿<UserControl x:Class="Calculo_Biorritmo.Screens.Employees.EmployeesView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Calculo_Biorritmo.Screens.Employees"
+             xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+             mc:Ignorable="d" 
+             d:DesignHeight="450" d:DesignWidth="800">
+    <Border CornerRadius="0 30 30 0" Background="White">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition/>
+                <RowDefinition Height="AUTO"/>
+            </Grid.RowDefinitions>
+
+            <Border CornerRadius="0 30 0 0" Background="{StaticResource PrimaryHuePrincipal}">
+                <Grid >
+                    <Label 
+                HorizontalAlignment="Center"
+                Content="EMPLEADOS"
+                FontSize="22"
+                FontWeight="Bold"
+                Foreground="White"/>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Row="1">
+                <Label Content="CURP" FontWeight="Bold" Margin="35 0 0 0"/>
+                <StackPanel Orientation="Horizontal" Margin="30 20 10 0">
+
+                    <Border Background="White" CornerRadius="10" Width="280" HorizontalAlignment="Left" BorderBrush="LightGray" BorderThickness="1 1 2 4">
+                        <TextBox Name="tbBuscar"
+                             Height="20"
+                             BorderThickness="0"
+                             CharacterCasing="Upper"
+                             Margin="6" 
+                             Width="230"
+                             FontWeight="Bold" 
+                             FontSize="16"/>
+                    </Border>
+                    <Button
+                    Name="btnBuscar"
+                    Style="{StaticResource RoundedButtonBlue}"
+                    Content="Buscar"
+                    Margin="15 0"
+                    Padding="30 0"
+                    Click="btnBuscar_Click"
+                    VerticalAlignment="Bottom"
+                    Height="40"/>
+                </StackPanel>
+            </Grid>
+            <Grid  Grid.Row="2" Margin="20 30">
+                <DataGrid Name ="empleado" 
+                      SelectionChanged="empleado_SelectionChanged"
+                      IsReadOnly="True"
+                      SelectionUnit="Cell"
+                      AutoGenerateColumns="False"
+                      CanUserResizeRows="False"
+                    CanUserResizeColumns="False"
+                    CanUserReorderColumns="False"
+                    CanUserSortColumns="False"
+                      ColumnHeaderStyle="{StaticResource ColumnHeaderStyle1}"
+                      Foreground="{StaticResource PrimaryText}"
+                      ColumnWidth="*">
+                    <DataGrid.Columns>
+                        <DataGridTextColumn Header="Curp" Binding="{Binding curp}" />
+                        <DataGridTextColumn Header="Fecha Nacimiento" Binding="{Binding fecha_nacimiento, StringFormat='{}{0:dd/MM/yyyy}'}" />
+                        <DataGridTextColumn Header="Dias vividos" Binding="{Binding dias_vividos}" />
+                    </DataGrid.Columns>
+                </DataGrid>
+            </Grid>
+            <Grid Grid.Row="3">
+                <StackPanel Margin="20 20" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                    <Button Name="btnAddEmployee" 
+                    Style="{StaticResource RoundedButtonGreen}"
+                    Content="Agregar Empleado" 
+                    HorizontalAlignment="Left" 
+                    Height="50" 
+                    Padding="10 0" 
+                    Click="btnAddEmployee_Click"/>
+                </StackPanel>
+
+            </Grid>
+
+        </Grid>
+    </Border>
+    
+</UserControl>

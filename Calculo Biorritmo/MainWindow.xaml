@@ -1,0 +1,189 @@
+﻿<Window x:Class="Calculo_Biorritmo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes"
+        xmlns:local="clr-namespace:Calculo_Biorritmo"
+        WindowStyle="None"
+        Background="{x:Null}"
+        AllowsTransparency="True"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="600" Width="960" ResizeMode="NoResize" WindowStartupLocation="CenterScreen">
+    <Border CornerRadius="30">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width=".25*"/>
+                <ColumnDefinition/>
+            </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="auto"/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+                <Border CornerRadius="30 0 0 0" Background="White">
+                    <Grid Margin="10">
+                        <Viewbox>
+                            <Image HorizontalAlignment="Left" Source="/Resources/Images/BIO-RITMO.jpg" VerticalAlignment="Top" Width="190"/>
+                        </Viewbox>
+                    </Grid>
+                </Border>
+                
+                <Border Grid.Row="1" Background="{StaticResource PrimaryHuePrincipal}" CornerRadius="0 0 0 30">
+                    <StackPanel  Orientation="Vertical" >
+                        <Button Name="Main" BorderBrush="Transparent" Margin="0,5,0,0" Width="Auto" Height="50" Padding="0" Cursor="Hand" Click="Main_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Border 
+                                        Name="BackBorder"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                            <Border Name="FrontBorder" Margin="10,-1,-1,-1">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1*" />
+                                                        <ColumnDefinition Width="3*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <materialDesign:PackIcon HorizontalAlignment="Center" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="12" Grid.Column="0" Padding="0" Kind="Home" Foreground="White">
+                                                        <materialDesign:PackIcon.LayoutTransform>
+                                                            <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="2" ScaleY="1.8"/>
+                                                        </materialDesign:PackIcon.LayoutTransform>
+                                                    </materialDesign:PackIcon>
+                                                    <Label Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White">Inicio</Label>
+                                                </Grid>
+                                            </Border>
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button Name="Biorritm" BorderBrush="Transparent" Margin="0,5,0,0" Width="Auto" Height="50" Padding="0" Cursor="Hand" Click="Biorritm_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Border 
+                                        Name="BackBorder"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                            <Border Name="FrontBorder" Margin="10,-1,-1,-1">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1*" />
+                                                        <ColumnDefinition Width="3*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <materialDesign:PackIcon HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="12" Grid.Column="0" Padding="0" Kind="HeartPulse">
+                                                        <materialDesign:PackIcon.LayoutTransform>
+                                                            <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="2" ScaleY="1.8"/>
+                                                        </materialDesign:PackIcon.LayoutTransform>
+                                                    </materialDesign:PackIcon>
+                                                    <Label Grid.Column="1" HorizontalAlignment="Left" Foreground="White" VerticalAlignment="Center">Calcular</Label>
+                                                </Grid>
+                                            </Border>
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button Name="Employees" BorderBrush="Transparent" Margin="0,5,0,0" Width="Auto" Height="50" Padding="0" Cursor="Hand" Click="Employees_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Border 
+                                        Name="BackBorder"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                            <Border Name="FrontBorder" Margin="10,-1,-1,-1">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1*" />
+                                                        <ColumnDefinition Width="3*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <materialDesign:PackIcon HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="12" Grid.Column="0" Padding="0" Kind="Account">
+                                                        <materialDesign:PackIcon.LayoutTransform>
+                                                            <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="2" ScaleY="1.8"/>
+                                                        </materialDesign:PackIcon.LayoutTransform>
+                                                    </materialDesign:PackIcon>
+                                                    <Label Grid.Column="1" HorizontalAlignment="Left" Foreground="White" VerticalAlignment="Center">Empleados</Label>
+                                                </Grid>
+                                            </Border>
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button Name="Accident" BorderBrush="Transparent" Margin="0,5,0,0" Width="Auto" Height="50" Padding="0" Cursor="Hand" Click="Accident_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Border 
+                                        Name="BackBorder"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                            <Border Name="FrontBorder" Margin="10,-1,-1,-1">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1*" />
+                                                        <ColumnDefinition Width="3*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <materialDesign:PackIcon HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="12" Grid.Column="0" Padding="0" Kind="HeadAlert">
+                                                        <materialDesign:PackIcon.LayoutTransform>
+                                                            <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="2" ScaleY="1.8"/>
+                                                        </materialDesign:PackIcon.LayoutTransform>
+                                                    </materialDesign:PackIcon>
+                                                    <Label Grid.Column="1" HorizontalAlignment="Left" Foreground="White" VerticalAlignment="Center">Accidentes</Label>
+                                                </Grid>
+                                            </Border>
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+
+                        <Button Name="Close" BorderBrush="Transparent" Margin="0,5,0,0" Width="Auto" Height="50" Padding="0" Cursor="Hand" Click="Close_Click">
+                            <Button.Template>
+                                <ControlTemplate TargetType="Button">
+                                    <Grid>
+                                        <Border 
+                                        Name="BackBorder"
+                                        BorderBrush="{TemplateBinding BorderBrush}"
+                                        BorderThickness="{TemplateBinding BorderThickness}">
+                                            <Border Name="FrontBorder" Margin="10,-1,-1,-1">
+                                                <Grid>
+                                                    <Grid.ColumnDefinitions>
+                                                        <ColumnDefinition Width="1*" />
+                                                        <ColumnDefinition Width="3*" />
+                                                    </Grid.ColumnDefinitions>
+                                                    <materialDesign:PackIcon HorizontalAlignment="Center" Foreground="White" VerticalAlignment="Center" VerticalContentAlignment="Center" Height="12" Grid.Column="0" Padding="0" Kind="Logout">
+                                                        <materialDesign:PackIcon.LayoutTransform>
+                                                            <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="2" ScaleY="1.8"/>
+                                                        </materialDesign:PackIcon.LayoutTransform>
+                                                    </materialDesign:PackIcon>
+                                                    <Label Grid.Column="1" HorizontalAlignment="Left" Foreground="White" VerticalAlignment="Center">Cerrar Sesion</Label>
+                                                </Grid>
+                                            </Border>
+                                        </Border>
+                                    </Grid>
+                                </ControlTemplate>
+                            </Button.Template>
+                        </Button>
+                    </StackPanel>
+                </Border>
+                
+            </Grid>
+            <Grid Name="gridView" Grid.Column="1">
+
+            </Grid>
+            <Grid Grid.RowSpan="2" Grid.ColumnSpan="2" Name="GridBlock" Visibility="Collapsed" >
+                <Grid.Background>
+                    <SolidColorBrush Color="Black" Opacity="0.6"/>
+                </Grid.Background>
+
+            </Grid>
+        </Grid>
+    </Border>
+    
+</Window>

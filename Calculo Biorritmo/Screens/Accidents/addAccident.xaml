@@ -1,0 +1,100 @@
+﻿<Window x:Class="Calculo_Biorritmo.Screens.Accidents.addAccident"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calculo_Biorritmo.Screens.Accidents"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Background="{x:Null}"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        Title="addAccident" Height="370" Width="540">
+    <Border Background="White" CornerRadius="30">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition/>
+                <RowDefinition Height="AUTO"/>
+            </Grid.RowDefinitions>
+            <Border Background="{StaticResource PrimaryHuePrincipal}" CornerRadius="30 30 0 0">
+                <Grid >
+                    <Label 
+                HorizontalAlignment="Center"
+                Content="Registrar accidente"
+                FontSize="22"
+                FontWeight="Bold"
+                Foreground="White"/>
+                </Grid>
+            </Border>
+            
+            <Grid Grid.Row="1">
+                <TextBlock
+            Text="Para registrar un accidente, Complete el siguiente formulario."
+                Margin="20"
+                FontWeight="Bold"
+                FontSize="16"/>
+            </Grid>
+            <Grid Name="gridForm" Grid.Row="2" Margin="20 0">
+                <StackPanel>
+                    <StackPanel Orientation="Vertical">
+                        <Label Style="{StaticResource TitleInformation}">CURP*</Label>
+                        <Border Background="White" CornerRadius="10" Width="280" HorizontalAlignment="Left" BorderBrush="LightGray" BorderThickness="1 1 2 4">
+                            <TextBox Name="tbId"
+                             MaxLength="18" 
+                             Height="20"
+                             BorderThickness="0"
+                             TextChanged="tbId_TextChanged"
+                             Margin="6" 
+                             Width="230"
+                             TextAlignment="Center" 
+                             FontWeight="Bold" 
+                             FontSize="16"
+                                 Text="{Binding curp}"/>
+                        </Border>
+                        <Label Name="lblErrorCurp" Height="25" Visibility="Hidden" Foreground="Red"/>
+                    </StackPanel>
+                    <!--<Label
+                    Content="Nombre"
+                    FontWeight="Bold"/>-->
+
+
+                    <Label Style="{StaticResource TitleInformation}" >Fecha del accidente*</Label>
+                    <DatePicker
+                Name="tbFechaAccidente"
+                Grid.Row="1"
+                Width="200"
+                SelectedDateChanged="tbFechaAccidente_SelectedDateChanged"
+                HorizontalAlignment="Left"
+                SelectedDate="{Binding fecha_accidente}"/>
+                    <Label Name="lblErrorDate" Height="25" Visibility="Hidden" Foreground="Red"/>
+
+                </StackPanel>
+
+
+            </Grid>
+            <Grid Grid.Row="3">
+                <StackPanel Margin="30 20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+                    <Button Name="btnCancel" 
+                    Content="Cancelar" 
+                    HorizontalAlignment="Left" 
+                        Style="{StaticResource RoundedButtonGray}"
+                        Padding="20 0"
+                    Height="50" 
+                    Margin="20 0"
+                    Click="btnCancel_Click"/>
+                    <Button Name="btnRegister" 
+                    Content="Registrar" 
+                        Style="{StaticResource RoundedButtonGreen}"
+                        Padding="20 0"
+                    HorizontalAlignment="Left" 
+                    Height="50" 
+                    Click="btnRegister_Click"/>
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+    </Border>
+    
+</Window>
