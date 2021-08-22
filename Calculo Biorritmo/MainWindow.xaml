@@ -28,18 +28,21 @@
                         </Viewbox>
                     </Grid>
                 </Border>
-                
+
                 <Border Grid.Row="1" Background="{StaticResource PrimaryHuePrincipal}" CornerRadius="0 0 0 30">
                     <StackPanel  Orientation="Vertical" >
-                        <Button Name="Main" BorderBrush="Transparent" Margin="0,5,0,0" Width="Auto" Height="50" Padding="0" Cursor="Hand" Click="Main_Click">
+                        <StackPanel Orientation="Vertical">
+                            <Label Name="lblApiStatus" Content="Sin conexion" Background="Red" Foreground="White"/>
+                        </StackPanel>
+                        <Button x:Name="Main" BorderBrush="Transparent" Margin="0,5,0,0" Width="Auto" Height="50" Padding="0" Cursor="Hand" Click="Main_Click">
                             <Button.Template>
-                                <ControlTemplate TargetType="Button">
+                                <ControlTemplate TargetType="{x:Type Button}">
                                     <Grid>
                                         <Border 
-                                        Name="BackBorder"
+                                        x:Name="BackBorder"
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}">
-                                            <Border Name="FrontBorder" Margin="10,-1,-1,-1">
+                                            <Border x:Name="FrontBorder" Margin="10,-1,-1,-1">
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="1*" />
@@ -50,7 +53,7 @@
                                                             <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="2" ScaleY="1.8"/>
                                                         </materialDesign:PackIcon.LayoutTransform>
                                                     </materialDesign:PackIcon>
-                                                    <Label Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White">Inicio</Label>
+                                                    <Label Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Foreground="White" Content="Inicio"/>
                                                 </Grid>
                                             </Border>
                                         </Border>
@@ -59,15 +62,15 @@
                             </Button.Template>
                         </Button>
 
-                        <Button Name="Biorritm" BorderBrush="Transparent" Margin="0,5,0,0" Width="Auto" Height="50" Padding="0" Cursor="Hand" Click="Biorritm_Click">
+                        <Button x:Name="Biorritm" BorderBrush="Transparent" Margin="0,5,0,0" Width="Auto" Height="50" Padding="0" Cursor="Hand" Click="Biorritm_Click">
                             <Button.Template>
-                                <ControlTemplate TargetType="Button">
+                                <ControlTemplate TargetType="{x:Type Button}">
                                     <Grid>
                                         <Border 
-                                        Name="BackBorder"
+                                        x:Name="BackBorder"
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}">
-                                            <Border Name="FrontBorder" Margin="10,-1,-1,-1">
+                                            <Border x:Name="FrontBorder" Margin="10,-1,-1,-1">
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="1*" />
@@ -78,7 +81,7 @@
                                                             <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="2" ScaleY="1.8"/>
                                                         </materialDesign:PackIcon.LayoutTransform>
                                                     </materialDesign:PackIcon>
-                                                    <Label Grid.Column="1" HorizontalAlignment="Left" Foreground="White" VerticalAlignment="Center">Calcular</Label>
+                                                    <Label Grid.Column="1" HorizontalAlignment="Left" Foreground="White" VerticalAlignment="Center" Content="Calcular"/>
                                                 </Grid>
                                             </Border>
                                         </Border>
@@ -87,15 +90,15 @@
                             </Button.Template>
                         </Button>
 
-                        <Button Name="Employees" BorderBrush="Transparent" Margin="0,5,0,0" Width="Auto" Height="50" Padding="0" Cursor="Hand" Click="Employees_Click">
+                        <Button x:Name="Employees" BorderBrush="Transparent" Margin="0,5,0,0" Width="Auto" Height="50" Padding="0" Cursor="Hand" Click="Employees_Click">
                             <Button.Template>
-                                <ControlTemplate TargetType="Button">
+                                <ControlTemplate TargetType="{x:Type Button}">
                                     <Grid>
                                         <Border 
-                                        Name="BackBorder"
+                                        x:Name="BackBorder"
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}">
-                                            <Border Name="FrontBorder" Margin="10,-1,-1,-1">
+                                            <Border x:Name="FrontBorder" Margin="10,-1,-1,-1">
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="1*" />
@@ -106,7 +109,7 @@
                                                             <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="2" ScaleY="1.8"/>
                                                         </materialDesign:PackIcon.LayoutTransform>
                                                     </materialDesign:PackIcon>
-                                                    <Label Grid.Column="1" HorizontalAlignment="Left" Foreground="White" VerticalAlignment="Center">Empleados</Label>
+                                                    <Label Grid.Column="1" HorizontalAlignment="Left" Foreground="White" VerticalAlignment="Center" Content="Empleados"/>
                                                 </Grid>
                                             </Border>
                                         </Border>
@@ -115,15 +118,15 @@
                             </Button.Template>
                         </Button>
 
-                        <Button Name="Accident" BorderBrush="Transparent" Margin="0,5,0,0" Width="Auto" Height="50" Padding="0" Cursor="Hand" Click="Accident_Click">
+                        <Button x:Name="Accident" BorderBrush="Transparent" Margin="0,5,0,0" Width="Auto" Height="50" Padding="0" Cursor="Hand" Click="Accident_Click">
                             <Button.Template>
-                                <ControlTemplate TargetType="Button">
+                                <ControlTemplate TargetType="{x:Type Button}">
                                     <Grid>
                                         <Border 
-                                        Name="BackBorder"
+                                        x:Name="BackBorder"
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}">
-                                            <Border Name="FrontBorder" Margin="10,-1,-1,-1">
+                                            <Border x:Name="FrontBorder" Margin="10,-1,-1,-1">
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="1*" />
@@ -134,7 +137,7 @@
                                                             <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="2" ScaleY="1.8"/>
                                                         </materialDesign:PackIcon.LayoutTransform>
                                                     </materialDesign:PackIcon>
-                                                    <Label Grid.Column="1" HorizontalAlignment="Left" Foreground="White" VerticalAlignment="Center">Accidentes</Label>
+                                                    <Label Grid.Column="1" HorizontalAlignment="Left" Foreground="White" VerticalAlignment="Center" Content="Accidentes"/>
                                                 </Grid>
                                             </Border>
                                         </Border>
@@ -143,15 +146,15 @@
                             </Button.Template>
                         </Button>
 
-                        <Button Name="Close" BorderBrush="Transparent" Margin="0,5,0,0" Width="Auto" Height="50" Padding="0" Cursor="Hand" Click="Close_Click">
+                        <Button x:Name="Close" BorderBrush="Transparent" Margin="0,5,0,0" Width="Auto" Height="50" Padding="0" Cursor="Hand" Click="Close_Click">
                             <Button.Template>
-                                <ControlTemplate TargetType="Button">
+                                <ControlTemplate TargetType="{x:Type Button}">
                                     <Grid>
                                         <Border 
-                                        Name="BackBorder"
+                                        x:Name="BackBorder"
                                         BorderBrush="{TemplateBinding BorderBrush}"
                                         BorderThickness="{TemplateBinding BorderThickness}">
-                                            <Border Name="FrontBorder" Margin="10,-1,-1,-1">
+                                            <Border x:Name="FrontBorder" Margin="10,-1,-1,-1">
                                                 <Grid>
                                                     <Grid.ColumnDefinitions>
                                                         <ColumnDefinition Width="1*" />
@@ -162,7 +165,7 @@
                                                             <ScaleTransform CenterX="0.5" CenterY="0.5" ScaleX="2" ScaleY="1.8"/>
                                                         </materialDesign:PackIcon.LayoutTransform>
                                                     </materialDesign:PackIcon>
-                                                    <Label Grid.Column="1" HorizontalAlignment="Left" Foreground="White" VerticalAlignment="Center">Cerrar Sesion</Label>
+                                                    <Label Grid.Column="1" HorizontalAlignment="Left" Foreground="White" VerticalAlignment="Center" Content="Cerrar Sesion"/>
                                                 </Grid>
                                             </Border>
                                         </Border>
@@ -170,9 +173,11 @@
                                 </ControlTemplate>
                             </Button.Template>
                         </Button>
+                        <StackPanel VerticalAlignment="Bottom"/>
                     </StackPanel>
+
                 </Border>
-                
+
             </Grid>
             <Grid Name="gridView" Grid.Column="1">
 
@@ -183,7 +188,8 @@
                 </Grid.Background>
 
             </Grid>
+
         </Grid>
     </Border>
-    
+
 </Window>

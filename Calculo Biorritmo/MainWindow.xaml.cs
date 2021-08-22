@@ -41,6 +41,17 @@ namespace Calculo_Biorritmo
             InitializeComponent();
             initData();
             LoadEvents();
+            ApiStatus();
+        }
+
+        public async void ApiStatus()
+        {
+            var apistatus = await Api.ApiConnection.GetApiStatus();
+            if (apistatus)
+            {
+                lblApiStatus.Content = "Conectado";
+                lblApiStatus.Background = new SolidColorBrush(Colors.Green);
+            }
         }
 
         private void LoadEvents()

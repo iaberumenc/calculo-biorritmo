@@ -18,6 +18,7 @@ namespace Calculo_Biorritmo.Data
 
         public DbSet<employee> employees { get; set; }
         public DbSet<accident> accidents { get; set; }
+        public DbSet<PendingSync> pendingSyncs { get; set; }
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)
         {

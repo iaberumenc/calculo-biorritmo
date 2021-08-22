@@ -1,4 +1,5 @@
-﻿using Calculo_Biorritmo.Data;
+﻿using Calculo_Biorritmo.Api;
+using Calculo_Biorritmo.Data;
 using Calculo_Biorritmo.Models;
 using Calculo_Biorritmo.Utils;
 using Calculo_Biorritmo.Utils.Data;
@@ -24,7 +25,6 @@ namespace Calculo_Biorritmo.ApplicationLayer.UseCases.Employee.CreateEmployee
         public async Task<Unit> Handle(CreateEmployeeCommand request, CancellationToken cancellationToken)
         {
             var employee = new employee();
-            employee.id = int.Parse(tools.generateId());
             employee.curp = request.curp;
             //int days = DataCalc.daysLived(request.fecha_nacimiento);
             //employee.dias_vividos = days;
@@ -35,7 +35,16 @@ namespace Calculo_Biorritmo.ApplicationLayer.UseCases.Employee.CreateEmployee
                 
                 _ctx.employees.Add(employee);
                 await _ctx.SaveChangesAsync();
+                if(!await ApiConnection.RegisterEmployee(employee))
+                {
+                    PendingSync pendingSync = new PendingSync();
+                    pendingSync.modelo = "employee";
+                    pendingSync.id_Object = employee.id;
+                    _ctx.pendingSyncs.Add(pendingSync);
+                    await _ctx.SaveChangesAsync();
+                }
                 dbContextTransaction.Commit();
+                
             }
 
             return Unit.Value;

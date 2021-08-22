@@ -1,4 +1,5 @@
-﻿using Calculo_Biorritmo.Data;
+﻿using Calculo_Biorritmo.Api;
+using Calculo_Biorritmo.Data;
 using System;
 using System.Collections.Generic;
 using System.Configuration;
@@ -31,7 +32,14 @@ namespace Calculo_Biorritmo.Loading
 
         private async void init()
         {
-            await ApplyMigrations();
+            try
+            {
+                await ApplyMigrations();
+            }
+            catch (TaskCanceledException)
+            {
+
+            }
         }
 
         private async Task ApplyMigrations()
@@ -53,7 +61,14 @@ namespace Calculo_Biorritmo.Loading
             migrator.Configuration.TargetDatabase = dbInfo;
 
             status.Content = "Verificando actualizaciones";
-            progress.Value = 70;
+            progress.Value = 60;
+            await Task.Delay(10);
+
+            status.Content = "Verificando datos en el API";
+            progress.Value = 80;
+            await ApiConnection.RefreshEmployeesFromApiAsync();
+            await ApiConnection.RefreshAccidentsFromApiAsync();
+            await ApiConnection.checkPendingSync();
             await Task.Delay(10);
 
             var migrations = migrator.GetPendingMigrations();
@@ -63,9 +78,7 @@ namespace Calculo_Biorritmo.Loading
             await Task.Delay(10);
 
             if (!migrations.Any())
-            {
                 Close();
-            }
             else
                 migrator.Update();
         }

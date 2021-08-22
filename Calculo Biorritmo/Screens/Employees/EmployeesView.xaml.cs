@@ -19,6 +19,7 @@ using Calculo_Biorritmo.Data;
 using MediatR;
 using Autofac;
 using Calculo_Biorritmo.ApplicationLayer.Queries.Employees.Data;
+using Calculo_Biorritmo.Api;
 
 namespace Calculo_Biorritmo.Screens.Employees
 {
@@ -32,13 +33,13 @@ namespace Calculo_Biorritmo.Screens.Employees
         {
             InitializeComponent();
             init();
+            
         }
 
         public async void init()
         {
             _mediator = DIContainer.container.Resolve<IMediator>();
             await updateTable();
-
         }
 
         private async Task updateTable()

@@ -1,4 +1,5 @@
-﻿using Calculo_Biorritmo.Data;
+﻿using Calculo_Biorritmo.Api;
+using Calculo_Biorritmo.Data;
 using Calculo_Biorritmo.Models;
 using Calculo_Biorritmo.Utils;
 using MediatR;
@@ -23,7 +24,6 @@ namespace Calculo_Biorritmo.ApplicationLayer.UseCases.Accident.RegisterAccident
         public async Task<Unit> Handle(RegisterAccidentCommand request, CancellationToken cancellationToken)
         {
             var accident = new accident();
-            accident.id = int.Parse(tools.generateId());
             accident.curp = request.curp;
             accident.fecha_accidente = request.fecha_accidente;
             accident.residuo_fisico = request.residuo_fisico;
@@ -36,6 +36,14 @@ namespace Calculo_Biorritmo.ApplicationLayer.UseCases.Accident.RegisterAccident
 
                 _ctx.accidents.Add(accident);
                 await _ctx.SaveChangesAsync();
+                if (!await ApiConnection.RegisterAccident(accident))
+                {
+                    PendingSync pendingSync = new PendingSync();
+                    pendingSync.modelo = "accident";
+                    pendingSync.id_Object = accident.id;
+                    _ctx.pendingSyncs.Add(pendingSync);
+                    await _ctx.SaveChangesAsync();
+                }
                 dbContextTransaction.Commit();
             }
 

@@ -59,6 +59,9 @@
     <Reference Include="Microsoft.Bcl.AsyncInterfaces, Version=1.0.0.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
       <HintPath>..\packages\Microsoft.Bcl.AsyncInterfaces.1.1.0\lib\net461\Microsoft.Bcl.AsyncInterfaces.dll</HintPath>
     </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
     <Reference Include="OxyPlot, Version=2.0.0.0, Culture=neutral, PublicKeyToken=638079a8f0bd61e9, processorArchitecture=MSIL">
       <HintPath>..\packages\OxyPlot.Core.2.0.0\lib\net45\OxyPlot.dll</HintPath>
     </Reference>
@@ -127,6 +130,10 @@
     <Compile Include="Algorytms\AccidentAlgorytm.cs" />
     <Compile Include="Algorytms\Generadora.cs" />
     <Compile Include="Algorytms\Punto.cs" />
+    <Compile Include="Api\ApiConnection.cs" />
+    <Compile Include="Api\Contracts\AccidentContract.cs" />
+    <Compile Include="Api\Contracts\EmployeeContract.cs" />
+    <Compile Include="Api\urls.cs" />
     <Compile Include="ApplicationLayer\Constants\BiorytmDays.cs" />
     <Compile Include="ApplicationLayer\Queries\Accidents\Data\GetAccidentDataGridCommand.cs" />
     <Compile Include="ApplicationLayer\Queries\Accidents\Data\GetAccidentDataGridHandler.cs" />
@@ -156,8 +163,13 @@
     <Compile Include="Migrations\202106141937530_init.designer.cs">
       <DependentUpon>202106141937530_init.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202108110302448_queue.cs" />
+    <Compile Include="Migrations\202108110302448_queue.designer.cs">
+      <DependentUpon>202108110302448_queue.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\accident.cs" />
+    <Compile Include="Models\PendingSync.cs" />
     <Compile Include="Screens\Accidents\addAccident.xaml.cs">
       <DependentUpon>addAccident.xaml</DependentUpon>
     </Compile>
@@ -194,6 +206,7 @@
     <Compile Include="ViewModel\AccidentsVM.cs" />
     <Compile Include="ViewModel\DataVM.cs" />
     <Compile Include="ViewModel\EmployeesVM.cs" />
+    <Compile Include="ViewModel\PendingSyncVM.cs" />
     <Page Include="Loading\LoadingView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -267,6 +280,9 @@
     <EmbeddedResource Include="Migrations\202106141937530_init.resx">
       <DependentUpon>202106141937530_init.cs</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202108110302448_queue.resx">
+      <DependentUpon>202108110302448_queue.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
@@ -287,9 +303,7 @@
   <ItemGroup>
     <Resource Include="Resources\Images\BIO-RITMO.jpg" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Api\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />
   <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
