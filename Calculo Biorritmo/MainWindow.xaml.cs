@@ -22,7 +22,6 @@ using System.Data.SqlClient;
 using System.Configuration;
 using Calculo_Biorritmo.Screens.Home;
 using Calculo_Biorritmo.Screens.Accidents;
-using Calculo_Biorritmo.Connection;
 using System.Data.Entity.Infrastructure;
 using Calculo_Biorritmo.Data;
 using System.Data.Entity.Migrations;
@@ -81,8 +80,15 @@ namespace Calculo_Biorritmo
 
         private void initData()
         {
-            DIContainer.container = AutofacRegistrations.Register();
-            gridView.Children.Add(new HomeView());
+            try
+            {
+                DIContainer.container = AutofacRegistrations.Register();
+                gridView.Children.Add(new HomeView());
+            }
+            catch(Exception e)
+            {
+                MessageBox.Show(e.ToString());
+            }
 
         }
 
@@ -93,7 +99,7 @@ namespace Calculo_Biorritmo
 
         private void Employees_Click(object sender, RoutedEventArgs e)
         {
-            resetColors();
+            ResetColors();
             Employees.BorderBrush = Brushes.LightBlue;
             gridView.Children.Clear();
             gridView.Children.Add(new EmployeesView());
@@ -101,7 +107,7 @@ namespace Calculo_Biorritmo
 
         private void Biorritm_Click(object sender, RoutedEventArgs e)
         {
-            resetColors();
+            ResetColors();
             Biorritm.BorderBrush = Brushes.LightBlue;
             gridView.Children.Clear();
             gridView.Children.Add(new CalculateView(ChangeCalculateView));
@@ -109,7 +115,7 @@ namespace Calculo_Biorritmo
 
         private void Main_Click(object sender, RoutedEventArgs e)
         {
-            resetColors();
+            ResetColors();
             Main.BorderBrush = Brushes.LightBlue;
             gridView.Children.Clear();
             gridView.Children.Add(new HomeView());
@@ -117,13 +123,13 @@ namespace Calculo_Biorritmo
 
         private void Accident_Click(object sender, RoutedEventArgs e)
         {
-            resetColors();
+            ResetColors();
             Accident.BorderBrush = Brushes.LightBlue;
             gridView.Children.Clear();
-            gridView.Children.Add(new AccidentView());
+            gridView.Children.Add(new AccidentView(ChangeAccidentsView));
         }
 
-        private void resetColors()
+        private void ResetColors()
         {
             Main.BorderBrush = Brushes.Transparent;
             Employees.BorderBrush = Brushes.Transparent;
@@ -132,6 +138,12 @@ namespace Calculo_Biorritmo
         }
 
         public void ChangeCalculateView(UserControl userControl)
+        {
+            gridView.Children.Clear();
+            gridView.Children.Add(userControl);
+        }
+
+        public void ChangeAccidentsView(UserControl userControl)
         {
             gridView.Children.Clear();
             gridView.Children.Add(userControl);

@@ -98,7 +98,7 @@ namespace Calculo_Biorritmo.Screens.Calculate
         private void btnCalculate_Click(object sender, RoutedEventArgs e)
         {
             var livingDaysFirstMoth = DataCalc.daysLived(_fechaNacimiento, DataCalc.getFirstDayMonth());
-            _userControl(new EmployeeBiorytm(tbDiasVividos.Text, livingDaysFirstMoth));
+            _userControl(new EmployeeBiorytm(_userControl, tbDiasVividos.Text, livingDaysFirstMoth));
 
             //dias = int.Parse(tbDiasVividos.Text);
             //var biorritmoFisico = CalcularBiorritmo(dias,23);

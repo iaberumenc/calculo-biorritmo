@@ -78,10 +78,10 @@ namespace Calculo_Biorritmo.Algorytms
                 RegistrosIntuicionales.Add(biorritmo.residuo_intuicional);
             }
 
-            var modaFisico = RegistrosFisicos.GroupBy(x => x).Where(g => g.Count() > 1).OrderByDescending(x => x.Count()).Select(x => x.Key).FirstOrDefault();
-            var modaEmocional = RegistrosEmocionales.GroupBy(x => x).Where(g => g.Count() > 1).OrderByDescending(x => x.Count()).Select(x => x.Key).FirstOrDefault();
-            var modaIntelectual = RegistrosIntelectuales.GroupBy(x => x).Where(g => g.Count() > 1).OrderByDescending(x => x.Count()).Select(x => x.Key).FirstOrDefault();
-            var modaIntuicional = RegistrosIntuicionales.GroupBy(x => x).Where(g => g.Count() > 1).OrderByDescending(x => x.Count()).Select(x => x.Key).FirstOrDefault();
+            var modaFisico = RegistrosFisicos.GroupBy(x => x).OrderByDescending(x => x.Count()).Select(x => x.Key).FirstOrDefault();
+            var modaEmocional = RegistrosEmocionales.GroupBy(x => x).OrderByDescending(x => x.Count()).Select(x => x.Key).FirstOrDefault();
+            var modaIntelectual = RegistrosIntelectuales.GroupBy(x => x).OrderByDescending(x => x.Count()).Select(x => x.Key).FirstOrDefault();
+            var modaIntuicional = RegistrosIntuicionales.GroupBy(x => x).OrderByDescending(x => x.Count()).Select(x => x.Key).FirstOrDefault();
 
             var totalModaFisico = accidentes.Where(x => x.residuo_fisico == modaFisico).Count();
             var totalModaEmocional = accidentes.Where(x => x.residuo_emocional == modaEmocional).Count();

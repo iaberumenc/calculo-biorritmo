@@ -25,7 +25,7 @@
             <Border Background="White" CornerRadius="30">
                 <StackPanel >
                     <Border Style="{StaticResource BorderTitleSquare}" Background="{StaticResource Blue}">
-                        <Label Style="{StaticResource LabelTitleSquare}" FontSize="24" HorizontalAlignment="Center" Content="Accidentes"/>
+                        <Label Style="{StaticResource LabelTitleSquare}" FontSize="24" HorizontalAlignment="Center" Content="Criticos"/>
                     </Border>
                     <StackPanel Margin="10">
                         <StackPanel Orientation="Horizontal">
@@ -72,7 +72,7 @@
             <Border Background="White" CornerRadius="30" Margin="15 0 0 0" Grid.Column="1">
                 <StackPanel >
                     <Border Style="{StaticResource BorderTitleSquare}" Background="{StaticResource Yellow}">
-                        <Label Style="{StaticResource LabelTitleSquare}" FontSize="24" HorizontalAlignment="Center" Content="Accidentes"/>
+                        <Label Style="{StaticResource LabelTitleSquare}" FontSize="24" HorizontalAlignment="Center" Content="Mayores incidencias"/>
                     </Border>
                     <StackPanel Margin="10">
                         <StackPanel Orientation="Horizontal">

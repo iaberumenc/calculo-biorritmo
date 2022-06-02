@@ -28,6 +28,7 @@
             
             <Grid Grid.Row="1">
                 <TextBlock
+                    FontWeight="Bold"
             Text="Para calcular el biorritmo, escribe el CURP del empleado y presionar el boton de buscar o la tecla enter"
                 TextWrapping="Wrap"
                 Margin="20"

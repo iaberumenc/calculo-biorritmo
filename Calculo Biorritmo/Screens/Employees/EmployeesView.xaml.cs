@@ -14,7 +14,6 @@ using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
 using System.Data.SqlClient;
-using Calculo_Biorritmo.Connection;
 using Calculo_Biorritmo.Data;
 using MediatR;
 using Autofac;

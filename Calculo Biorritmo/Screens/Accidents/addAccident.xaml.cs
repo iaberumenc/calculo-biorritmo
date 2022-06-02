@@ -44,36 +44,36 @@ namespace Calculo_Biorritmo.Screens.Accidents
             //registerall();
         }
 
-        /*private async void registerall()
-        {
-            var accidents = new List<accident>();
+        //private async void registerall()
+        //{
+        //    var accidents = new List<accident>();
 
-            using (var ctx = new EmployeeEntity())
-                accidents = ctx.accidents.ToList();
+        //    using (var ctx = new EmployeeEntity())
+        //        accidents = ctx.accidents.ToList();
 
-            foreach(var item in accidents)
-            {
-                var birthDate = DataCalc.getBirthDate(item.curp);
-                int dias = DataCalc.daysLived(birthDate, item.fecha_accidente);
-                var biorritmoFisico = CalcularBiorritmo(dias, BiorytmDays.biorritmo_fisico);
-                var biorritmoEmocional = CalcularBiorritmo(dias, BiorytmDays.biorritmo_emocional);
-                var biorritmoIntelectual = CalcularBiorritmo(dias, BiorytmDays.biorritmo_intelectual);
-                var biorritmoIntuicional = CalcularBiorritmo(dias, BiorytmDays.biorritmo_intuicional);
+        //    foreach (var item in accidents)
+        //    {
+        //        var birthDate = DataCalc.getBirthDate(item.curp);
+        //        int dias = DataCalc.daysLived(birthDate, item.fecha_accidente);
+        //        var biorritmoFisico = CalcularBiorritmo(dias, BiorytmDays.biorritmo_fisico);
+        //        var biorritmoEmocional = CalcularBiorritmo(dias, BiorytmDays.biorritmo_emocional);
+        //        var biorritmoIntelectual = CalcularBiorritmo(dias, BiorytmDays.biorritmo_intelectual);
+        //        var biorritmoIntuicional = CalcularBiorritmo(dias, BiorytmDays.biorritmo_intuicional);
 
-                using (var ctx = new EmployeeEntity())
-                {
-                    var some = ctx.accidents.Where(x => x.curp == item.curp).First();
-                    some.residuo_fisico = biorritmoFisico;
-                    some.residuo_emocional = biorritmoEmocional;
-                    some.residuo_intelectual = biorritmoIntelectual;
-                    some.residuo_intuicional = biorritmoIntuicional;
-                    ctx.SaveChanges();
-                }
-                   
-            }
+        //        using (var ctx = new EmployeeEntity())
+        //        {
+        //            var some = ctx.accidents.Where(x => x.curp == item.curp && x.fecha_accidente == item.fecha_accidente).First();
+        //            some.residuo_fisico = biorritmoFisico;
+        //            some.residuo_emocional = biorritmoEmocional;
+        //            some.residuo_intelectual = biorritmoIntelectual;
+        //            some.residuo_intuicional = biorritmoIntuicional;
+        //            ctx.SaveChanges();
+        //        }
 
-            
-        }*/
+        //    }
+
+
+        //}
 
         private async void btnRegister_Click(object sender, RoutedEventArgs e)
         {

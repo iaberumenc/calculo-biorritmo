@@ -16,6 +16,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using Calculo_Biorritmo.Screens.Calculate.BiorytmResults;
+using Calculo_Biorritmo.ViewModel;
 
 namespace Calculo_Biorritmo.Screens.Accidents
 {
@@ -24,10 +26,12 @@ namespace Calculo_Biorritmo.Screens.Accidents
     /// </summary>
     public partial class AccidentView : UserControl
     {
+        public Action<UserControl> _userControl;
         private IMediator _mediator;
-        public AccidentView()
+        public AccidentView(Action<UserControl> action)
         {
             InitializeComponent();
+            _userControl = action;
             init();
             AccidentAlgorytm.startAlgorytm();
             AccidentAlgorytm.checkCritics();
@@ -84,5 +88,10 @@ namespace Calculo_Biorritmo.Screens.Accidents
             AlgorytmInfo algorytmInfo = new AlgorytmInfo();
             algorytmInfo.Show();
         }
+
+        //private void btnCheckGraph_Click(object sender, RoutedEventArgs e)
+        //{
+        //    //_userControl(new EmployeeBiorytm(_userControl,"",0));
+        //}
     }
 }

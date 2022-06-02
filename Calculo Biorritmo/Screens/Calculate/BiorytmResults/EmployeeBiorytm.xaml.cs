@@ -30,12 +30,14 @@ namespace Calculo_Biorritmo.Screens.Calculate.BiorytmResults
         Generadora generador;
         private string _livingDays;
         private int _livingDaysFirstDayMonth;
-        public EmployeeBiorytm(string livingDays,int livingDaysFirstDayMonth)
+        public Action<UserControl> _userControl;
+        public EmployeeBiorytm(Action<UserControl> action, string livingDays,int livingDaysFirstDayMonth)
         {
             InitializeComponent();
             generador = new Generadora();
             _livingDays = livingDays;
             _livingDaysFirstDayMonth = livingDaysFirstDayMonth;
+            _userControl = action;
             init();
         }
 
@@ -155,8 +157,10 @@ namespace Calculo_Biorritmo.Screens.Calculate.BiorytmResults
 
         private void BtnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            //_userControl(new CalculateView(tbDiasVividos.Text));
+            _userControl(new CalculateView(_userControl));
         }
+
+        
 
     }
 }

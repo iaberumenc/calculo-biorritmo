@@ -13,7 +13,6 @@ using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
 using System.Data;
-using Calculo_Biorritmo.Connection;
 using System.Configuration;
 using MediatR;
 using Calculo_Biorritmo.ApplicationLayer.UseCases.Employee.CreateEmployee;
@@ -111,10 +110,11 @@ namespace Calculo_Biorritmo.Screens.Employees
             if(tbFechaAccidente.SelectedDate != null)
             {
                 vm.fecha_accidente = tbFechaAccidente.SelectedDate ?? DateTime.Now;
-                var biorritmoFisico = CalcularBiorritmo(livedDays, BiorytmDays.biorritmo_fisico);
-                var biorritmoEmocional = CalcularBiorritmo(livedDays, BiorytmDays.biorritmo_emocional);
-                var biorritmoIntelectual = CalcularBiorritmo(livedDays, BiorytmDays.biorritmo_intelectual);
-                var biorritmoIntuicional = CalcularBiorritmo(livedDays, BiorytmDays.biorritmo_intuicional);
+                int livedDaysUntilAccident = DataCalc.daysLived(fecha_nacimiento, vm.fecha_accidente);
+                var biorritmoFisico = CalcularBiorritmo(livedDaysUntilAccident, BiorytmDays.biorritmo_fisico);
+                var biorritmoEmocional = CalcularBiorritmo(livedDaysUntilAccident, BiorytmDays.biorritmo_emocional);
+                var biorritmoIntelectual = CalcularBiorritmo(livedDaysUntilAccident, BiorytmDays.biorritmo_intelectual);
+                var biorritmoIntuicional = CalcularBiorritmo(livedDaysUntilAccident, BiorytmDays.biorritmo_intuicional);
 
                 var registerAccident = new RegisterAccidentCommand(vm.curp, vm.fecha_accidente, biorritmoFisico, biorritmoEmocional, biorritmoIntelectual, biorritmoIntuicional);
                 await _mediator.Send(registerAccident);

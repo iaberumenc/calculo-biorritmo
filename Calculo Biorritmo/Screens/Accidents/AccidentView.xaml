@@ -79,12 +79,20 @@
                 <StackPanel Margin="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
                     <Button Name="btnCheckNeuralInfo" 
                     Style="{StaticResource RoundedButtonGray}"
-                    Content="Revisar datos" 
+                    Content="Analizar datos" 
                     HorizontalAlignment="Left" 
                     Height="50" 
                     Margin="10 0"
                     Padding="10 0" 
                     Click="btnCheckNeuralInfo_Click"/>
+                    <!--<Button Name="btnCheckGraph" 
+                    Style="{StaticResource RoundedButtonBlue}"
+                    Content="Visualizar seleccionado" 
+                    HorizontalAlignment="Left" 
+                    Height="50" 
+                    Margin="10 0"
+                    Padding="10 0" 
+                    Click="btnCheckGraph_Click"/>-->
                     <Button Name="btnAddAccident" 
                     Style="{StaticResource RoundedButtonGreen}"
                     Content="Registrar accidente" 
