@@ -6,7 +6,7 @@
              StartupUri="MainWindow.xaml">
     <Application.Resources>
         <ResourceDictionary>
-            <SolidColorBrush x:Key="PrimaryHuePrincipal" Color="#444854" ></SolidColorBrush>
+            <SolidColorBrush x:Key="PrimaryHuePrincipal" Color="#7A7A7B" ></SolidColorBrush>
             <SolidColorBrush x:Key="PrimaryHueWhite" Color="#F4F3F8"></SolidColorBrush>
             <SolidColorBrush x:Key="PrimaryHueRealWhite" Color="#FFFFFF"></SolidColorBrush>
             <SolidColorBrush x:Key="PrimaryHueDark" Color="#2C2D54"></SolidColorBrush>
