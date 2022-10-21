@@ -5,8 +5,10 @@ using System.Collections.Generic;
 using System.Configuration;
 using System.Data.Entity.Infrastructure;
 using System.Data.Entity.Migrations;
+using System.Data.SqlClient;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -16,6 +18,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.StartPanel;
 
 namespace Calculo_Biorritmo.Loading
 {
@@ -32,17 +35,12 @@ namespace Calculo_Biorritmo.Loading
 
         private async void init()
         {
-            try
-            {
-                await ApplyMigrations();
-            }
-            catch (TaskCanceledException)
-            {
 
-            }
+            var t = await ApplyMigrations();
+            Console.WriteLine(t);
         }
 
-        private async Task ApplyMigrations()
+        private async Task<bool> ApplyMigrations()
         {
             try
             {
@@ -51,8 +49,8 @@ namespace Calculo_Biorritmo.Loading
                 var dbInfo = new DbConnectionInfo(ConfigurationManager.ConnectionStrings["BiorytmDb"].ToString(), "System.Data.SqlClient");
                 var config = new Calculo_Biorritmo.Migrations.Configuration();
                 config.MigrationsAssembly = typeof(EmployeeEntity).Assembly;
-                config.MigrationsNamespace = "AlcyonPos.Migrations";
-                config.ContextKey = "AlcyonPos.Migrations.Configuration";
+                config.MigrationsNamespace = "Calculo_Biorritmo.Migrations";
+                config.ContextKey = "Calculo_Biorritmo.Migrations.Configuration";
                 config.TargetDatabase = dbInfo;
 
                 status.Content = "Conectando con el servidor de bases datos";
@@ -83,10 +81,19 @@ namespace Calculo_Biorritmo.Loading
                     Close();
                 else
                     migrator.Update();
+
+                return true;
+            }
+            catch (SqlException ex)
+            {
+                MessageBox.Show("La computadora cliente no cuenta con una base de datos local o no se encontro la instancia .SQLEXPRESS. Favor de instalar SQL Express");
+                Application.Current.Shutdown();
+                return false;
             }
             catch(Exception e)
             {
                 MessageBox.Show(e.ToString());
+                return false;
             }
         }
     }

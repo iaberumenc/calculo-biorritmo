@@ -8,7 +8,7 @@ namespace Calculo_Biorritmo.ViewModel
 {
     class AccidentsVM
     {
-        public AccidentsVM(int id, string curp, DateTime fecha_nacimiento,double residuo_fisico, double residuo_emocional, double residuo_intelectual, double residuo_intuicional)
+        public AccidentsVM(int id, string curp, DateTime fecha_accidente, double residuo_fisico, double residuo_emocional, double residuo_intelectual, double residuo_intuicional)
         {
             this.id = id;
             this.curp = curp;

@@ -32,7 +32,6 @@
     <ApplicationRevision>6</ApplicationRevision>
     <ApplicationVersion>1.0.0.%2a</ApplicationVersion>
     <UseApplicationTrust>false</UseApplicationTrust>
-    <CreateDesktopShortcut>true</CreateDesktopShortcut>
     <PublishWizardCompleted>true</PublishWizardCompleted>
     <BootstrapperEnabled>true</BootstrapperEnabled>
   </PropertyGroup>
@@ -56,10 +55,10 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>E15F96335DD013F1D4B81C4795993827A4E02C17</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>CEDD8DEFF31DD34CC80B7013E65A7058A5466FEB</ManifestCertificateThumbprint>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Calculo Biorritmo_1_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>TempKey2022.pfx</ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
     <GenerateManifests>true</GenerateManifests>
@@ -71,7 +70,16 @@
     <SignAssembly>true</SignAssembly>
   </PropertyGroup>
   <PropertyGroup>
-    <AssemblyOriginatorKeyFile>Calculo Biorritmo_TemporaryKey.pfx</AssemblyOriginatorKeyFile>
+    <AssemblyOriginatorKeyFile>TempKey2022.pfx</AssemblyOriginatorKeyFile>
+  </PropertyGroup>
+  <PropertyGroup>
+    <TargetZone>LocalIntranet</TargetZone>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationManifest>Properties\app.manifest</ApplicationManifest>
+  </PropertyGroup>
+  <PropertyGroup>
+    <ApplicationIcon>IconApp.ico</ApplicationIcon>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="Autofac, Version=6.2.0.0, Culture=neutral, PublicKeyToken=17863af14b0044da, processorArchitecture=MSIL">
@@ -171,6 +179,8 @@
     <Compile Include="Api\Contracts\EmployeeContract.cs" />
     <Compile Include="Api\urls.cs" />
     <Compile Include="ApplicationLayer\Constants\BiorytmDays.cs" />
+    <Compile Include="ApplicationLayer\Constants\CalculatedDay.cs" />
+    <Compile Include="ApplicationLayer\Constants\ViewEnum.cs" />
     <Compile Include="ApplicationLayer\Queries\Accidents\Data\GetAccidentDataGridCommand.cs" />
     <Compile Include="ApplicationLayer\Queries\Accidents\Data\GetAccidentDataGridHandler.cs" />
     <Compile Include="ApplicationLayer\Queries\Accidents\Data\GetAccidentDataGridResponse.cs" />
@@ -190,13 +200,9 @@
     <Compile Include="Loading\LoadingView.xaml.cs">
       <DependentUpon>LoadingView.xaml</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\202106141937530_init.cs" />
-    <Compile Include="Migrations\202106141937530_init.designer.cs">
-      <DependentUpon>202106141937530_init.cs</DependentUpon>
-    </Compile>
-    <Compile Include="Migrations\202108110302448_queue.cs" />
-    <Compile Include="Migrations\202108110302448_queue.designer.cs">
-      <DependentUpon>202108110302448_queue.cs</DependentUpon>
+    <Compile Include="Migrations\202210172148269_initialCreate.cs" />
+    <Compile Include="Migrations\202210172148269_initialCreate.designer.cs">
+      <DependentUpon>202210172148269_initialCreate.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\accident.cs" />
@@ -209,6 +215,12 @@
     </Compile>
     <Compile Include="Screens\Calculate\BiorytmResults\EmployeeBiorytm.xaml.cs">
       <DependentUpon>EmployeeBiorytm.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Generic\EmployeeNotFound.xaml.cs">
+      <DependentUpon>EmployeeNotFound.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Screens\Generic\GenericMessage.xaml.cs">
+      <DependentUpon>GenericMessage.xaml</DependentUpon>
     </Compile>
     <Compile Include="Utils\Connection.cs" />
     <Compile Include="Models\employee.cs" />
@@ -235,6 +247,7 @@
     <Compile Include="Utils\Validators\InputValidators.cs" />
     <Compile Include="ViewModel\AccidentsVM.cs" />
     <Compile Include="ViewModel\DataVM.cs" />
+    <Compile Include="ViewModel\EmployeesDataVM.cs" />
     <Compile Include="ViewModel\EmployeesVM.cs" />
     <Compile Include="ViewModel\PendingSyncVM.cs" />
     <Page Include="Loading\LoadingView.xaml">
@@ -285,6 +298,14 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Screens\Generic\EmployeeNotFound.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Screens\Generic\GenericMessage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
     <Page Include="Screens\Home\HomeView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -304,23 +325,20 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
-    <EmbeddedResource Include="Migrations\202106141937530_init.resx">
-      <DependentUpon>202106141937530_init.cs</DependentUpon>
-    </EmbeddedResource>
-    <EmbeddedResource Include="Migrations\202108110302448_queue.resx">
-      <DependentUpon>202108110302448_queue.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\202210172148269_initialCreate.resx">
+      <DependentUpon>202210172148269_initialCreate.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
-    <None Include="Calculo Biorritmo_1_TemporaryKey.pfx" />
-    <None Include="Calculo Biorritmo_TemporaryKey.pfx" />
     <None Include="packages.config" />
+    <None Include="Properties\app.manifest" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
     </None>
+    <None Include="TempKey2022.pfx" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
@@ -348,6 +366,12 @@
       <ProductName>SQL Server 2019 Express LocalDB</ProductName>
       <Install>true</Install>
     </BootstrapperPackage>
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="MainIcon.ico" />
+  </ItemGroup>
+  <ItemGroup>
+    <Resource Include="IconApp.ico" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <Import Project="..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets" Condition="Exists('..\packages\MaterialDesignThemes.4.0.0\build\MaterialDesignThemes.targets')" />

@@ -14,46 +14,68 @@ namespace Calculo_Biorritmo.Algorytms
 {
     class AccidentAlgorytm
     {
-        /*public static List<Double> startAlgorytm()
+        public static List<EmployeesDataVM> EmployeesOnDanger()
         {
-            var accidentes =  new List<accident>();
+            var employees =  new List<employee>();
+            var EmployeesOnDanger =  new List<EmployeesDataVM>();
             using (var ctx = new EmployeeEntity())
-                foreach (var item in ctx.accidents.ToList())
-                    accidentes.Add(item);
+                foreach (var item in ctx.employees.ToList())
+                    employees.Add(item);
 
-            if (!accidentes.Any())
+            if (!employees.Any())
                 return null;
 
-            var RegistrosFisicos = new List<Double>();
-            var RegistrosEmocionales = new List<Double>();
-            var RegistrosIntuicionales = new List<Double>();
-            var RegistrosIntelectuales = new List<Double>();
+            foreach (var Empleado in employees)
+            {
+                var BirthDate = Empleado.fecha_nacimiento;
+                var days = DataCalc.daysLived(BirthDate);
+                var BiorritmoFisico = DataCalc.CalculateBiorritm(days, BiorytmDays.biorritmo_fisico);
+                var BiorritmoEmocional = DataCalc.CalculateBiorritm(days, BiorytmDays.biorritmo_emocional);
+                var BiorritmoIntelectual = DataCalc.CalculateBiorritm(days, BiorytmDays.biorritmo_intelectual);
+                var BiorritmoIntuicional = DataCalc.CalculateBiorritm(days, BiorytmDays.biorritmo_intuicional);
 
-            foreach (var biorritmo in accidentes){
-                RegistrosFisicos.Add(biorritmo.residuo_fisico);
-                RegistrosEmocionales.Add(biorritmo.residuo_emocional);
-                RegistrosIntelectuales.Add(biorritmo.residuo_intelectual);
-                RegistrosIntuicionales.Add(biorritmo.residuo_intuicional);
+                var isFisicCritic = calculateCritics(BiorritmoFisico);
+                var isEmotionalCritic = calculateCritics(BiorritmoEmocional);
+                var isIntuitionalCritic = calculateCritics(BiorritmoIntelectual);
+                var isIntelectualCritic = calculateCritics(BiorritmoIntuicional);
+
+                if (isFisicCritic != null || isEmotionalCritic != null || isIntuitionalCritic != null || isIntelectualCritic != null)
+                {
+                    if (Empleado.curp != "RERM631201NZK4E")
+                        Console.Write("");
+                    EmployeesOnDanger.Add(
+                        new EmployeesDataVM(Empleado.curp, 
+                            BiorritmoFisico[CalculatedDay.today],
+                            (isFisicCritic != null ? true : false),
+                            BiorritmoEmocional[CalculatedDay.today],
+                            (isEmotionalCritic != null ? true : false),
+                            BiorritmoIntelectual[CalculatedDay.today],
+                            (isIntuitionalCritic != null ? true : false),
+                            BiorritmoIntuicional[CalculatedDay.today],
+                            (isIntelectualCritic != null ? true : false)));
+                }
+
+
             }
 
-            var totalFisico = RegistrosFisicos.Sum();
-            var promedioFisico = totalFisico / RegistrosFisicos.Count;
-            var totalEmocional = RegistrosEmocionales.Sum();
-            var promedioEmocional = totalEmocional / RegistrosEmocionales.Count;
-            var totalIntelectual= RegistrosIntelectuales.Sum();
-            var promedioIntelectual = totalIntelectual / RegistrosIntelectuales.Count;
-            var totalIntuicional = RegistrosIntuicionales.Sum();
-            var promedioIntuicional = totalIntuicional / RegistrosIntuicionales.Count;
+            //var totalFisico = RegistrosFisicos.Sum();
+            //var promedioFisico = totalFisico / RegistrosFisicos.Count;
+            //var totalEmocional = RegistrosEmocionales.Sum();
+            //var promedioEmocional = totalEmocional / RegistrosEmocionales.Count;
+            //var totalIntelectual= RegistrosIntelectuales.Sum();
+            //var promedioIntelectual = totalIntelectual / RegistrosIntelectuales.Count;
+            //var totalIntuicional = RegistrosIntuicionales.Sum();
+            //var promedioIntuicional = totalIntuicional / RegistrosIntuicionales.Count;
 
-            var promedios = new List<Double>();
-            promedios.Add(promedioFisico);
-            promedios.Add(promedioEmocional);
-            promedios.Add(promedioIntelectual);
-            promedios.Add(promedioIntuicional);
+            //var promedios = new List<Double>();
+            //promedios.Add(promedioFisico);
+            //promedios.Add(promedioEmocional);
+            //promedios.Add(promedioIntelectual);
+            //promedios.Add(promedioIntuicional);
 
-            return promedios;
+            return EmployeesOnDanger;
 
-        }*/
+        }
 
         public static AvgVM startAlgorytm()
         {
@@ -120,7 +142,7 @@ namespace Calculo_Biorritmo.Algorytms
 
             foreach (var item in accidentes)
             {
-                var date = DataCalc.getBirthDate(item.curp);
+                var date = DataCalc.getBirthDateFromCurp(item.curp);
                 var days = DataCalc.daysLived(date,item.fecha_accidente);
                 var RegistrosFisicos = DataCalc.CalculateBiorritm(days,BiorytmDays.biorritmo_fisico);
                 var wasFisicCritic =  calculateCritics(RegistrosFisicos);
@@ -198,20 +220,20 @@ namespace Calculo_Biorritmo.Algorytms
 
         public static double? calculateCritics(List<Double> List)
         {
-            if (List[1] == 0)
-                return List[1];
+            if (List[CalculatedDay.today] == 0)
+                return List[CalculatedDay.today];
             //else if (List[0] == 0)
             //    return List[1];
             //else if (List[2] == 0)
             //    return List[1];
-            else if (List[0] > 0 && List[1] < 0)
-                return List[1];
-            else if (List[0] < 0 && List[1] > 0)
-                return List[1];
-            else if (List[1] < 0 && List[2] > 0)
-                return List[1];
-            else if (List[1] > 0 && List[2] < 0)
-                return List[1];
+            else if (List[CalculatedDay.yesterday] > 0 && List[CalculatedDay.today] < 0)
+                return List[CalculatedDay.today];
+            else if (List[CalculatedDay.yesterday] < 0 && List[CalculatedDay.today] > 0)
+                return List[CalculatedDay.today];
+            else if (List[CalculatedDay.today] < 0 && List[CalculatedDay.tomorrow] > 0)
+                return List[CalculatedDay.today];
+            else if (List[CalculatedDay.today] > 0 && List[CalculatedDay.tomorrow] < 0)
+                return List[CalculatedDay.today];
             return null;
         }
     }

@@ -3,21 +3,15 @@ using Calculo_Biorritmo.ApplicationLayer.Queries.Accidents.Data;
 using Calculo_Biorritmo.Algorytms;
 using MediatR;
 using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using Calculo_Biorritmo.Screens.Calculate.BiorytmResults;
-using Calculo_Biorritmo.ViewModel;
+using Calculo_Biorritmo.ApplicationLayer.Queries.Employees.Data;
+using Calculo_Biorritmo.Utils.Data;
+using Calculo_Biorritmo.Models;
+using Calculo_Biorritmo.Screens.Generic;
+using Calculo_Biorritmo.ApplicationLayer.Constants;
 
 namespace Calculo_Biorritmo.Screens.Accidents
 {
@@ -57,7 +51,8 @@ namespace Calculo_Biorritmo.Screens.Accidents
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error" +ex.Message);
+                var genericMessage = new GenericMessage("Ha ocurrido un error" + ex.Message);
+                genericMessage.ShowDialog();
             }
         }
 
@@ -82,16 +77,27 @@ namespace Calculo_Biorritmo.Screens.Accidents
         {
             if(empleado.Items.Count == 0)
             {
-                MessageBox.Show("El algoritmo no tiene informacion para procesar");
+                var genericMessage = new GenericMessage("El algoritmo no tiene informacion para procesar");
+                genericMessage.ShowDialog();
                 return;
             }
             AlgorytmInfo algorytmInfo = new AlgorytmInfo();
             algorytmInfo.Show();
         }
 
-        //private void btnCheckGraph_Click(object sender, RoutedEventArgs e)
-        //{
-        //    //_userControl(new EmployeeBiorytm(_userControl,"",0));
-        //}
+
+        private void btnCheckGraph_Click(object sender, RoutedEventArgs e)
+        {
+            var accident = (accidentGridItem)empleado.SelectedItem;
+            if (accident == null)
+            {
+                var genericMessage = new GenericMessage("Seleccione un registro");
+                genericMessage.ShowDialog();
+                return;
+            }
+            var BirthDay = DataCalc.getBirthDateFromCurp(accident.curp);
+            var livingDaysFirstMoth = DataCalc.daysLived(BirthDay, DataCalc.getFirstDayMonth(accident.fecha_accidente));
+            _userControl(new EmployeeBiorytm(_userControl, ViewEnum.AccidentViewEnum, DataCalc.daysLived(BirthDay,accident.fecha_accidente).ToString(), livingDaysFirstMoth, accident.fecha_accidente));
+        }
     }
 }

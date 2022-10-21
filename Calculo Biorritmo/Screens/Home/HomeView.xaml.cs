@@ -41,37 +41,7 @@ namespace Calculo_Biorritmo.Screens.Home
             var accidentes = new List<accident>();
             var employees = new List<employee>();
             var modas = AccidentAlgorytm.startAlgorytm();
-            List<AccidentsVM> posibleAccidents = null;
-
-            using (var ctx = new EmployeeEntity())
-                employees = ctx.employees.ToList();
-
-            int i = 0;
-
-            foreach(var employee in employees)
-            {
-                var birthDate = DataCalc.getBirthDate(employee.curp);
-                var LivingDays = DataCalc.daysLived(birthDate);
-
-                accidents.Add(new AccidentsVM(i, 
-                    employee.curp,
-                    employee.fecha_nacimiento,
-                    CalcBiorrytm(LivingDays, BiorytmDays.biorritmo_fisico),
-                    CalcBiorrytm(LivingDays, BiorytmDays.biorritmo_emocional),
-                    CalcBiorrytm(LivingDays, BiorytmDays.biorritmo_intelectual),
-                    CalcBiorrytm(LivingDays, BiorytmDays.biorritmo_intuicional)));
-
-                i++;
-            }
-            if(modas != null)
-            {
-                posibleAccidents = accidents.Where(x => x.residuo_fisico == modas.biorritmoFisico
-                                                && x.residuo_emocional == modas.biorritmoEmocional
-                                                && x.residuo_intelectual == modas.biorritmoIntelectual
-                                                && x.residuo_intuicional == modas.biorritmoIntuicional).ToList();
-            }
-            
-            
+            List<EmployeesDataVM> posibleAccidents = AccidentAlgorytm.EmployeesOnDanger();
 
             using (var ctx = new EmployeeEntity())
                 totalRegisters = ctx.employees.totalRegisters();
@@ -81,7 +51,7 @@ namespace Calculo_Biorritmo.Screens.Home
             lbAccidentNum.Content = totalAccidents.ToString();
             lbEmployeeNum.Content = totalRegisters.ToString();
 
-            empleado.ItemsSource = posibleAccidents;
+            empleado.ItemsSource = posibleAccidents.OrderByDescending(x => x.isCriticFisic).ThenByDescending(x => x.isCriticEmotional).ThenByDescending(x => x.isCriticIntelectual).ThenByDescending(x => x.isCriticIntuitional);
 
             var totalriskEmployees = empleado.Items.Count;
 

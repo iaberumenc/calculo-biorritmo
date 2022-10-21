@@ -141,11 +141,53 @@
                       ColumnHeaderStyle="{StaticResource ColumnHeaderStyle1}"
                       Foreground="{StaticResource PrimaryText}">
                             <DataGrid.Columns>
-                                <DataGridTextColumn Width="*" Header="Curp" Binding="{Binding curp}" />
-                                <DataGridTextColumn Width="110" Header="Fisico" Binding="{Binding residuo_fisico}" />
-                                <DataGridTextColumn Width="120" Header="Emocional" Binding="{Binding residuo_emocional}" />
-                                <DataGridTextColumn Width="120" Header="Intelectual" Binding="{Binding residuo_intelectual}" />
-                                <DataGridTextColumn Width="120" Header="Intuicional" Binding="{Binding residuo_intuicional}" />
+                                <DataGridTextColumn Width="*" Header="Curp" Binding="{Binding curp}" >
+                                    
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Width="110" Header="Fisico" Binding="{Binding residuo_fisico}" >
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding isCriticFisic}" Value="True">
+                                                    <Setter Property="Background" Value="IndianRed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Width="120" Header="Emocional" Binding="{Binding residuo_emocional}" >
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding isCriticEmotional}" Value="True">
+                                                    <Setter Property="Background" Value="IndianRed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Width="120" Header="Intelectual" Binding="{Binding residuo_intelectual}" >
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding isCriticIntelectual}" Value="True">
+                                                    <Setter Property="Background" Value="IndianRed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
+                                <DataGridTextColumn Width="120" Header="Intuicional" Binding="{Binding residuo_intuicional}" >
+                                    <DataGridTextColumn.CellStyle>
+                                        <Style TargetType="DataGridCell">
+                                            <Style.Triggers>
+                                                <DataTrigger Binding="{Binding isCriticIntuitional}" Value="True">
+                                                    <Setter Property="Background" Value="IndianRed"/>
+                                                </DataTrigger>
+                                            </Style.Triggers>
+                                        </Style>
+                                    </DataGridTextColumn.CellStyle>
+                                </DataGridTextColumn>
                             </DataGrid.Columns>
                         </DataGrid>
                     </Grid>

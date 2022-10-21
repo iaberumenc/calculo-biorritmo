@@ -10,9 +10,9 @@ namespace Calculo_Biorritmo.Utils.Data
     public static class  DataCalc
     {
         
-        public static DateTime getBirthDate(string RFC)
+        public static DateTime getBirthDateFromCurp(string CURP)
         {
-            var datos = RFC.Substring(4, 6);
+            var datos = CURP.Substring(4, 6);
 
             var year = datos.Substring(0,2);
             var maxYear = DateTime.Now.Year.ToString().Substring(2, 2);
@@ -44,6 +44,12 @@ namespace Calculo_Biorritmo.Utils.Data
         {
             DateTime today = DateTime.Now;
             var firstDayOfMonth = new DateTime(today.Year, today.Month, 1);
+            return firstDayOfMonth;
+        }
+
+        public static DateTime getFirstDayMonth(DateTime date)
+        {
+            var firstDayOfMonth = new DateTime(date.Year, date.Month, 1);
             return firstDayOfMonth;
         }
 

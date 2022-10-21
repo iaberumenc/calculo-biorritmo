@@ -1,10 +1,14 @@
 ﻿using Autofac;
 using Calculo_Biorritmo.Algorytms;
+using Calculo_Biorritmo.ApplicationLayer.Constants;
 using Calculo_Biorritmo.ApplicationLayer.Queries.Employees.Data;
 using Calculo_Biorritmo.Data;
 using Calculo_Biorritmo.Extensions.ContextExtensions;
+using Calculo_Biorritmo.Screens.Accidents;
 using Calculo_Biorritmo.Screens.Calculate.BiorytmResults;
+using Calculo_Biorritmo.Screens.Generic;
 using Calculo_Biorritmo.Utils.Data;
+using Calculo_Biorritmo.Utils.Validators;
 using Calculo_Biorritmo.ViewModel;
 using MediatR;
 using OxyPlot;
@@ -65,22 +69,50 @@ namespace Calculo_Biorritmo.Screens.Calculate
             if (string.IsNullOrWhiteSpace(tbCurp.Text))
                 return;
 
+            if (tbCurp.Text.Length < 18)
+            {
+                var genericMessage = new GenericMessage("El CURP debe ser de 18 Caracteres");
+                genericMessage.ShowDialog();
+                return;
+            }
+
+            if (!InputValidators.validateCURP(vm.curp))
+            {
+                var genericMessage = new GenericMessage("Ingresa un CURP Valido");
+                genericMessage.ShowDialog();
+                return;
+            }
+
             var response = await _mediator.Send(new GetEmployeeDataGridCommand()
             {
                 curp = tbCurp.Text
             });
 
+            bool oneTime = false;
 
             if (!response.data.Any())
             {
-                MessageBox.Show("No se encontro un empleado registrado con ese CURP");
-                return;
+                var employeeNotFound = new EmployeeNotFound(vm.curp);
+                if(!(bool)employeeNotFound.ShowDialog())
+                    return;
+                else
+                {
+                    oneTime = true;
+                }
             }
 
-            using (var ctx = new EmployeeEntity())
-                tbAccidentes.Text = ctx.accidents.totalAccidentsByCurp(tbCurp.Text).ToString();
-            
-            _fechaNacimiento = response.data.Select(x => x.fecha_nacimiento).First();
+            if (!oneTime)
+            {
+                using (var ctx = new EmployeeEntity())
+                    tbAccidentes.Text = ctx.accidents.totalAccidentsByCurp(tbCurp.Text).ToString();
+
+                _fechaNacimiento = response.data.Select(x => x.fecha_nacimiento).First();
+            }
+            else
+            {
+                tbAccidentes.Text = "N/A";
+                _fechaNacimiento = DataCalc.getBirthDateFromCurp(vm.curp);
+            }
             tbDiasVividos.Text = Utils.Data.DataCalc.daysLived(_fechaNacimiento).ToString();
             tbFechaNacimiento.Text = _fechaNacimiento.ToString("dd/MM/yyyy");
             btnCalculate.IsEnabled = true;
@@ -97,17 +129,8 @@ namespace Calculo_Biorritmo.Screens.Calculate
 
         private void btnCalculate_Click(object sender, RoutedEventArgs e)
         {
-            var livingDaysFirstMoth = DataCalc.daysLived(_fechaNacimiento, DataCalc.getFirstDayMonth());
-            _userControl(new EmployeeBiorytm(_userControl, tbDiasVividos.Text, livingDaysFirstMoth));
-
-            //dias = int.Parse(tbDiasVividos.Text);
-            //var biorritmoFisico = CalcularBiorritmo(dias,23);
-            //var biorritmoEmocional = CalcularBiorritmo(dias, 28);
-            //var biorritmoIntelectual = CalcularBiorritmo(dias, 33);
-            //var biorritmoIntuicional = CalcularBiorritmo(dias, 38);
-
-            //var results = new Results(tbAccidentes.Text,_fechaNacimiento.ToString(),tbCurp.Text,biorritmoFisico,biorritmoEmocional,biorritmoIntelectual,biorritmoIntuicional);
-            //results.ShowDialog(); 
+            var livingDaysFirstMonth = DataCalc.daysLived(_fechaNacimiento, DataCalc.getFirstDayMonth());
+            _userControl(new EmployeeBiorytm(_userControl, ViewEnum.CalculateViewEnum , tbDiasVividos.Text, livingDaysFirstMonth, DateTime.Now));
 
 
         }

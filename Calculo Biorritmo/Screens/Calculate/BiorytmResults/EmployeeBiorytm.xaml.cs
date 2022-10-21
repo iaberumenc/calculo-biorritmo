@@ -1,5 +1,7 @@
 ﻿using Calculo_Biorritmo.Algorytms;
 using Calculo_Biorritmo.ApplicationLayer.Constants;
+using Calculo_Biorritmo.Screens.Accidents;
+using Calculo_Biorritmo.Screens.Employees;
 using Calculo_Biorritmo.Utils.Data;
 using OxyPlot;
 using OxyPlot.Axes;
@@ -30,14 +32,18 @@ namespace Calculo_Biorritmo.Screens.Calculate.BiorytmResults
         Generadora generador;
         private string _livingDays;
         private int _livingDaysFirstDayMonth;
+        private DateTime _FromDate;
         public Action<UserControl> _userControl;
-        public EmployeeBiorytm(Action<UserControl> action, string livingDays,int livingDaysFirstDayMonth)
+        private int _previous;
+        public EmployeeBiorytm(Action<UserControl> action, int previous, string livingDays,int livingDaysFirstDayMonth,DateTime FromDate)
         {
             InitializeComponent();
             generador = new Generadora();
             _livingDays = livingDays;
             _livingDaysFirstDayMonth = livingDaysFirstDayMonth;
             _userControl = action;
+            _FromDate = FromDate;
+            _previous = previous;
             init();
         }
 
@@ -100,11 +106,19 @@ namespace Calculo_Biorritmo.Screens.Calculate.BiorytmResults
             Cero.Points.Add(new DataPoint(30, 0));
             Cero.Color = OxyColor.FromRgb(0, 0, 0);
 
+            var DiaNumero = _FromDate.Day;
+
+            LineSeries DiaActual = new LineSeries();
+            DiaActual.Points.Add(new DataPoint(DiaNumero, 1));
+            DiaActual.Points.Add(new DataPoint(DiaNumero, -1));
+            DiaActual.Color = OxyColor.FromRgb(0, 0, 0);
+
             model.Series.Add(Fisico);
             model.Series.Add(Emocional);
             model.Series.Add(Intelectual);
             model.Series.Add(Intuicional);
             model.Series.Add(Cero);
+            model.Series.Add(DiaActual);
             asd.Model = model;
 
             var fisic = DataCalc.CalculateBiorritm(Convert.ToInt32(_livingDays), BiorytmDays.biorritmo_fisico);
@@ -157,7 +171,15 @@ namespace Calculo_Biorritmo.Screens.Calculate.BiorytmResults
 
         private void BtnRegresar_Click(object sender, RoutedEventArgs e)
         {
-            _userControl(new CalculateView(_userControl));
+            switch (_previous)
+            {
+                case 1: _userControl(new CalculateView(_userControl));
+                    break;
+                case 2: _userControl(new EmployeesView(_userControl));
+                    break;
+                case 3: _userControl(new AccidentView(_userControl));
+                    break;
+            }
         }
 
         

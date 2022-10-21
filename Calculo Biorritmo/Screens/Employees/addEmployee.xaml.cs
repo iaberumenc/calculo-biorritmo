@@ -23,6 +23,7 @@ using Calculo_Biorritmo.ApplicationLayer.UseCases.Accident;
 using Calculo_Biorritmo.Utils.Validators;
 using Calculo_Biorritmo.ApplicationLayer.Constants;
 using Calculo_Biorritmo.Data;
+using Calculo_Biorritmo.Screens.Generic;
 
 namespace Calculo_Biorritmo.Screens.Employees
 {
@@ -33,10 +34,12 @@ namespace Calculo_Biorritmo.Screens.Employees
     {
         EmployeesVM vm = new EmployeesVM();
         private IMediator _mediator;
-        public addEmployee()
+        public addEmployee(string curp)
         {
             InitializeComponent();
             init();
+            if (!string.IsNullOrEmpty(curp))
+                vm.curp = curp;
         }
 
         public void init()
@@ -84,8 +87,8 @@ namespace Calculo_Biorritmo.Screens.Employees
                 }
             }
 
-            vm.fecha_nacimiento = DataCalc.getBirthDate(vm.curp);
-            DateTime fecha_nacimiento = DataCalc.getBirthDate(vm.curp);
+            vm.fecha_nacimiento = DataCalc.getBirthDateFromCurp(vm.curp);
+            DateTime fecha_nacimiento = DataCalc.getBirthDateFromCurp(vm.curp);
             int livedDays = DataCalc.daysLived(fecha_nacimiento);
 
             if(livedDays < 0)
@@ -103,7 +106,8 @@ namespace Calculo_Biorritmo.Screens.Employees
             }
             catch(Exception)
             {
-                MessageBox.Show("Ha ocurrido un error al registrar al empleado");
+                var genericMessageError = new GenericMessage("Ha ocurrido un error al registrar al empleado");
+                genericMessageError.ShowDialog();
                 return;
             }
 
@@ -120,7 +124,8 @@ namespace Calculo_Biorritmo.Screens.Employees
                 await _mediator.Send(registerAccident);
             }
             var response = $"{vm.curp} registrado con exito";
-            MessageBox.Show(response);
+            var genericMessage = new GenericMessage(response);
+            genericMessage.ShowDialog();
             Close();
         }
 

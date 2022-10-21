@@ -57,7 +57,6 @@
                     </Setter.Value>
                 </Setter>
                 <Setter Property= "Foreground" Value="#FFFFFF" />
-                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}"  />
                 <Setter Property="FontSize" Value="22"  />
                 <Setter Property="FontWeight" Value="SemiBold" />
                 <Style.Triggers>
@@ -125,31 +124,26 @@
 
             <Style x:Key="StartTitle" TargetType="Label">
                 <Setter Property="FontSize" Value="18" />
-                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}"/>
                 <Setter Property="Foreground" Value="#5E5E5E" />
                 <Setter Property="FontWeight" Value="Bold" />
             </Style>
             <Style x:Key="StartTitleWhite" TargetType="Label">
-                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}" />
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="Foreground" Value="#FFFFFF" />
                 <Setter Property="FontWeight" Value="Bold" />
             </Style>
             <Style x:Key="StartTitleRegularWhite" TargetType="Label">
-                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}" />
                 <Setter Property="FontSize" Value="20" />
                 <Setter Property="Foreground" Value="#FFFFFF" />
                 <Setter Property="FontWeight" Value="Regular" />
             </Style>
             <!--Contenido Informativo-->
             <Style x:Key="InformationContentWhite" TargetType="Label">
-                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}" />
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="Foreground" Value="#FFFFFF" />
                 <Setter Property="FontWeight" Value="Medium" />
             </Style>
             <Style x:Key="ShortcutsContentWhite" TargetType="Label">
-                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}" />
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="Foreground" Value="#FFFFFF" />
                 <Setter Property="FontWeight" Value="Medium" />
@@ -161,13 +155,11 @@
                 <Setter Property="FontSize" Value="14" />
             </Style>
             <Style x:Key="InformationContent" TargetType="TextBlock">
-                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}"/>
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="Foreground" Value="{StaticResource PrimaryHuePrincipal}" />
                 <Setter Property="FontWeight" Value="Normal" />
             </Style>
             <Style x:Key="InformationContentBlockWhite" TargetType="TextBlock">
-                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}"/>
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="VerticalAlignment" Value="Center"/>
                 <Setter Property="HorizontalAlignment" Value="Center"/>
@@ -176,20 +168,17 @@
             </Style>
 
             <Style x:Key="TitleInformation" TargetType="Label">
-                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}"/>
                 <Setter Property="FontSize" Value="18" />
                 <Setter Property="Foreground" Value="#5E5E5E" />
                 <Setter Property="FontWeight" Value="Bold" />
             </Style>
             <Style x:Key="TitleInformationCanceled" TargetType="Label">
-                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}"/>
                 <Setter Property="FontSize" Value="40" />
                 <Setter Property="Foreground" Value="Red" />
                 <Setter Property="FontWeight" Value="Bold" />
             </Style>
 
             <Style x:Key="ContentMarked" TargetType="Label">
-                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}"/>
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="Foreground" Value="{StaticResource PrimaryHuePrincipal}" />
                 <Setter Property="FontWeight" Value="Bold" />
@@ -201,7 +190,6 @@
             </Style>
 
             <Style x:Key="ColumnHeaderStyle1" TargetType="DataGridColumnHeader">
-                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}"/>
                 <Setter Property="FontSize" Value="16" />
                 <Setter Property="Padding" Value="12"/>
                 <Setter Property="Background" Value="{StaticResource PrimaryHueRealWhite}"/>
@@ -216,7 +204,6 @@
                 <Setter Property="Opacity" Value="1"/>
             </Style>
             <Style TargetType="Label" x:Key="LabelTitleModal" >
-                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}" />
                 <Setter Property="FontWeight" Value="Bold" />
                 <Setter Property="FontSize" Value="40" />
                 <Setter Property="Foreground" Value="{StaticResource PrimaryHueRealWhite}" />
@@ -232,7 +219,6 @@
                 <Setter Property="Opacity" Value="1"/>
             </Style>
             <Style TargetType="Label" x:Key="LabelTitleSquare" >
-                <Setter Property="FontFamily" Value="{StaticResource FontPrimary}" />
                 <Setter Property="FontWeight" Value="Bold" />
                 <Setter Property="FontSize" Value="30" />
                 <Setter Property="Foreground" Value="{StaticResource PrimaryHueRealWhite}" />

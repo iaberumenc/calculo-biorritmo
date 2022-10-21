@@ -26,6 +26,7 @@ using System.Data.Entity.Infrastructure;
 using Calculo_Biorritmo.Data;
 using System.Data.Entity.Migrations;
 using Calculo_Biorritmo.Loading;
+using Calculo_Biorritmo.Screens.Generic;
 
 namespace Calculo_Biorritmo
 {
@@ -87,7 +88,8 @@ namespace Calculo_Biorritmo
             }
             catch(Exception e)
             {
-                MessageBox.Show(e.ToString());
+                var genericErrorMessage = new GenericMessage(e.ToString());
+                genericErrorMessage.ShowDialog();
             }
 
         }
@@ -102,7 +104,7 @@ namespace Calculo_Biorritmo
             ResetColors();
             Employees.BorderBrush = Brushes.LightBlue;
             gridView.Children.Clear();
-            gridView.Children.Add(new EmployeesView());
+            gridView.Children.Add(new EmployeesView(ChangeEmployeesView));
         }
 
         private void Biorritm_Click(object sender, RoutedEventArgs e)
@@ -149,6 +151,11 @@ namespace Calculo_Biorritmo
             gridView.Children.Add(userControl);
         }
 
+        public void ChangeEmployeesView(UserControl userControl)
+        {
+            gridView.Children.Clear();
+            gridView.Children.Add(userControl);
+        }
 
     }
 }

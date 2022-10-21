@@ -3,7 +3,7 @@
     using System;
     using System.Data.Entity.Migrations;
     
-    public partial class init : DbMigration
+    public partial class initialCreate : DbMigration
     {
         public override void Up()
         {
@@ -32,11 +32,22 @@
                 .PrimaryKey(t => t.id)
                 .Index(t => t.curp, unique: true);
             
+            CreateTable(
+                "dbo.PendingSync",
+                c => new
+                    {
+                        id = c.Int(nullable: false, identity: true),
+                        modelo = c.String(),
+                        id_Object = c.Int(nullable: false),
+                    })
+                .PrimaryKey(t => t.id);
+            
         }
         
         public override void Down()
         {
             DropIndex("dbo.employee", new[] { "curp" });
+            DropTable("dbo.PendingSync");
             DropTable("dbo.employee");
             DropTable("dbo.accident");
         }

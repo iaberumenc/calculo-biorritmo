@@ -1,24 +1,16 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
+﻿using Autofac;
+using MediatR;
+using Calculo_Biorritmo.ApplicationLayer.Queries.Employees.Data;
+using System;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
-using System.Data;
-using System.Data.SqlClient;
-using Calculo_Biorritmo.Data;
-using MediatR;
-using Autofac;
-using Calculo_Biorritmo.ApplicationLayer.Queries.Employees.Data;
-using Calculo_Biorritmo.Api;
+using Calculo_Biorritmo.Screens.Calculate.BiorytmResults;
+using Calculo_Biorritmo.ViewModel;
+using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
+using Calculo_Biorritmo.Utils.Data;
+using Calculo_Biorritmo.Screens.Generic;
+using Calculo_Biorritmo.ApplicationLayer.Constants;
 
 namespace Calculo_Biorritmo.Screens.Employees
 {
@@ -27,10 +19,12 @@ namespace Calculo_Biorritmo.Screens.Employees
     /// </summary>
     public partial class EmployeesView : UserControl
     {
+        public Action<UserControl> _userControl;
         private IMediator _mediator;
-        public EmployeesView()
+        public EmployeesView(Action<UserControl> action)
         {
             InitializeComponent();
+            _userControl = action;
             init();
             
         }
@@ -55,13 +49,14 @@ namespace Calculo_Biorritmo.Screens.Employees
             }
             catch (Exception ex)
             {
-                MessageBox.Show("Ha ocurrido un error");
+                var genericErrorMessage = new GenericMessage("Ha ocurrido un error");
+                genericErrorMessage.ShowDialog();
             }
         }
 
         private void btnAddEmployee_Click(object sender, RoutedEventArgs e)
         {
-            var addNewEmployee = new addEmployee();
+            var addNewEmployee = new addEmployee(null);
             addNewEmployee.ShowDialog();
             init();
         }
@@ -74,6 +69,19 @@ namespace Calculo_Biorritmo.Screens.Employees
         private async void btnBuscar_Click(object sender, RoutedEventArgs e)
         {
             await updateTable();
+        }
+
+        private void btnCheckGraph_Click(object sender, RoutedEventArgs e)
+        {
+            var employee = (employeeGridItem)empleado.SelectedItem;
+            if(employee == null)
+            {
+                var genericMessage = new GenericMessage("Seleccione un registro");
+                genericMessage.ShowDialog();
+                return;
+            }
+            var livingDaysFirstMoth = DataCalc.daysLived(employee.fecha_nacimiento, DataCalc.getFirstDayMonth());
+            _userControl(new EmployeeBiorytm(_userControl, ViewEnum.EmployeesViewEnum , employee.dias_vividos.ToString(), livingDaysFirstMoth, DateTime.Now));
         }
     }
 }

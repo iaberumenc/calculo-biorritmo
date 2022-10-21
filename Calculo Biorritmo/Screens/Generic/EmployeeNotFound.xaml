@@ -1,0 +1,69 @@
+﻿<Window x:Class="Calculo_Biorritmo.Screens.Generic.EmployeeNotFound"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Calculo_Biorritmo.Screens.Generic"
+        mc:Ignorable="d"
+        WindowStyle="None"
+        Background="{x:Null}"
+        AllowsTransparency="True"
+        WindowStartupLocation="CenterScreen"
+        Title="addAccident" Height="200" Width="500">
+    <Border Background="White" CornerRadius="30">
+        <Grid >
+            <Grid.RowDefinitions>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition Height="AUTO"/>
+                <RowDefinition/>
+                <RowDefinition Height="AUTO"/>
+            </Grid.RowDefinitions>
+            <Border Background="{StaticResource PrimaryHuePrincipal}" CornerRadius="30 30 0 0">
+                <Grid >
+                    <Label 
+                HorizontalAlignment="Center"
+                Content="Registrar accidente"
+                FontSize="22"
+                FontWeight="Bold"
+                Foreground="White"/>
+                </Grid>
+            </Border>
+
+            <Grid Grid.Row="1">
+                <TextBlock
+            Text="No se encontro un empleado registrado con ese CURP"
+                Margin="20"
+                FontWeight="Bold"
+                FontSize="16"/>
+            </Grid>
+            <Grid Grid.Row="3">
+                <StackPanel Margin="30 20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+                    <Button Name="btnCancel" 
+                    Content="Cancelar" 
+                    HorizontalAlignment="Left" 
+                        Style="{StaticResource RoundedButtonGray}"
+                        Padding="20 0"
+                    Height="50" 
+                    Margin="20 0"
+                    Click="btnCancel_Click"/>
+                    <Button Name="btnRegister" 
+                    Content="Registrar" 
+                        Style="{StaticResource RoundedButtonGreen}"
+                        Padding="20 0"
+                    HorizontalAlignment="Left" 
+                    Height="50" 
+                    Click="btnRegister_Click"/>
+                    <Button Name="btnContinue" 
+                    Content="Ignorar" 
+                        Style="{StaticResource RoundedButtonBlue}"
+                        Padding="20 0"
+                            Margin="20 0"
+                    HorizontalAlignment="Left" 
+                    Height="50" 
+                    Click="btnContinue_Click"/>
+                </StackPanel>
+
+            </Grid>
+        </Grid>
+    </Border>
+</Window>

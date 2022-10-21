@@ -61,7 +61,7 @@
                     Content="Nombre"
                     FontWeight="Bold"/>-->
 
-                    <Label Style="{StaticResource TitleInformation}" >Fecha del accidente</Label>
+                    <Label Style="{StaticResource TitleInformation}" >Fecha del accidente (Opcional)</Label>
                     <DatePicker
                 Name="tbFechaAccidente"
                 Grid.Row="1"

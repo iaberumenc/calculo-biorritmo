@@ -7,13 +7,13 @@ namespace Calculo_Biorritmo.Migrations
     using System.Resources;
     
     [GeneratedCode("EntityFramework.Migrations", "6.4.4")]
-    public sealed partial class queue : IMigrationMetadata
+    public sealed partial class initialCreate : IMigrationMetadata
     {
-        private readonly ResourceManager Resources = new ResourceManager(typeof(queue));
+        private readonly ResourceManager Resources = new ResourceManager(typeof(initialCreate));
         
         string IMigrationMetadata.Id
         {
-            get { return "202108110302448_queue"; }
+            get { return "202210172148269_initialCreate"; }
         }
         
         string IMigrationMetadata.Source

@@ -35,6 +35,7 @@
                              CharacterCasing="Upper"
                              Margin="6" 
                              Width="230"
+                             MaxWidth="18"
                              FontWeight="Bold" 
                              FontSize="16"/>
                     </Border>
@@ -46,13 +47,22 @@
                     Padding="30 0"
                     Click="btnBuscar_Click"
                     VerticalAlignment="Bottom"
-                    Height="40"/>
+                    Height="50"/>
+                </StackPanel>
+                <StackPanel Margin="30 20 10 0">
+                    <Button Name="btnAddAccident" 
+                    Style="{StaticResource RoundedButtonGreen}"
+                    Content="Registrar accidente" 
+                    HorizontalAlignment="Right" 
+                    Margin="15 0"
+                    Height="50" 
+                    Padding="10 0" 
+                    Click="btnAddAccident_Click"/>
                 </StackPanel>
             </Grid>
             <Grid  Grid.Row="2" Margin="20 30">
                 <DataGrid Name ="empleado" 
                       IsReadOnly="True"
-                    SelectionUnit="Cell"
                       AutoGenerateColumns="False"
                       CanUserResizeRows="False"
                     CanUserResizeColumns="False"
@@ -85,21 +95,15 @@
                     Margin="10 0"
                     Padding="10 0" 
                     Click="btnCheckNeuralInfo_Click"/>
-                    <!--<Button Name="btnCheckGraph" 
+                    
+                    <Button Name="btnCheckGraph" 
                     Style="{StaticResource RoundedButtonBlue}"
-                    Content="Visualizar seleccionado" 
-                    HorizontalAlignment="Left" 
-                    Height="50" 
-                    Margin="10 0"
-                    Padding="10 0" 
-                    Click="btnCheckGraph_Click"/>-->
-                    <Button Name="btnAddAccident" 
-                    Style="{StaticResource RoundedButtonGreen}"
-                    Content="Registrar accidente" 
+                    Content="Graficar seleccionado" 
                     HorizontalAlignment="Left" 
                     Height="50" 
                     Padding="10 0" 
-                    Click="btnAddAccident_Click"/>
+                    Click="btnCheckGraph_Click"/>
+                    
                 </StackPanel>
 
             </Grid>

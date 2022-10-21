@@ -229,7 +229,7 @@ namespace Calculo_Biorritmo.Api
                         employee = ctx.employees.Where(x => x.id == item.id_Object).FirstOrDefault();
                         if (employee != null)
                         {
-                            if(!await RegisterEmployee(employee))
+                            if(!RegisterEmployee(employee).GetAwaiter().GetResult())
                                 return false;
                             ctx.pendingSyncs.Attach(item);
                             ctx.pendingSyncs.Remove(item);
@@ -250,7 +250,7 @@ namespace Calculo_Biorritmo.Api
                         accident = ctx.accidents.Where(x => x.id == item.id_Object).FirstOrDefault();
                         if (accident != null)
                         {
-                            if (!await RegisterAccident(accident))
+                            if (!RegisterAccident(accident).GetAwaiter().GetResult())
                                 return false;
                             ctx.pendingSyncs.Attach(item);
                             ctx.pendingSyncs.Remove(item);
