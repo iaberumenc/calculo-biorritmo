@@ -11,6 +11,8 @@ using Xceed.Wpf.Toolkit.PropertyGrid.Attributes;
 using Calculo_Biorritmo.Utils.Data;
 using Calculo_Biorritmo.Screens.Generic;
 using Calculo_Biorritmo.ApplicationLayer.Constants;
+using Microsoft.Office.Interop.Excel;
+using System.Collections.Generic;
 
 namespace Calculo_Biorritmo.Screens.Employees
 {
@@ -82,6 +84,53 @@ namespace Calculo_Biorritmo.Screens.Employees
             }
             var livingDaysFirstMoth = DataCalc.daysLived(employee.fecha_nacimiento, DataCalc.getFirstDayMonth());
             _userControl(new EmployeeBiorytm(_userControl, ViewEnum.EmployeesViewEnum , employee.dias_vividos.ToString(), livingDaysFirstMoth, DateTime.Now));
+        }
+
+        private void btnExport_Click(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                Microsoft.Office.Interop.Excel.Application excel = new Microsoft.Office.Interop.Excel.Application();
+                excel.ScreenUpdating = false;
+                Workbook workbook = excel.Workbooks.Add(System.Reflection.Missing.Value);
+                Worksheet sheet1 = (Worksheet)workbook.Sheets[1];
+                var EmployeeData = (List<employeeGridItem>)empleado.ItemsSource;
+
+                var DataArray = EmployeeData.ToArray();
+
+                for (int j = 0; j < empleado.Columns.Count; j++)
+                {
+                    Range myRange = (Range)sheet1.Cells[1, j + 1];
+                    sheet1.Cells[1, j + 1].Font.Bold = true;
+                    sheet1.Columns[j + 1].ColumnWidth = 20;
+                    myRange.Value2 = empleado.Columns[j].Header;
+                }
+
+                string[,] FinalArray = new string[empleado.Items.Count, empleado.Columns.Count];
+
+
+                for (int i = 0; i < empleado.Items.Count; i++)
+                {
+                    FinalArray[i, 0] = DataArray[i].curp.ToString();
+                    FinalArray[i, 1] = DataArray[i].fecha_nacimiento.ToString();
+                    FinalArray[i, 2] = DataArray[i].dias_vividos.ToString();
+                }
+
+                int rowCount = FinalArray.GetLength(0);
+                int columnCount = FinalArray.GetLength(1);
+
+                Range range = (Range)sheet1.Cells[2, 1];
+                range = range.get_Resize(rowCount, columnCount);
+                range.set_Value(XlRangeValueDataType.xlRangeValueDefault, FinalArray);
+
+                excel.ScreenUpdating = true;
+                excel.Visible = true;
+            }
+            catch (Exception ex)
+            {
+                MessageBox.Show(ex.Message);
+            }
+
         }
     }
 }

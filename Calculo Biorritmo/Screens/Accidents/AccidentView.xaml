@@ -87,6 +87,14 @@
             </Grid>
             <Grid Grid.Row="3">
                 <StackPanel Margin="20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+                    <Button Name="btnExport" 
+                    Style="{StaticResource RoundedButtonGreen}"
+                    Content="Exportar" 
+                    HorizontalAlignment="Left" 
+                    Height="50" 
+                    Padding="10 0" 
+                    Click="btnExport_Click"/>
+                    
                     <Button Name="btnCheckNeuralInfo" 
                     Style="{StaticResource RoundedButtonGray}"
                     Content="Analizar datos" 

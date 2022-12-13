@@ -84,7 +84,16 @@
                 </DataGrid>
             </Grid>
             <Grid Grid.Row="3">
-                <StackPanel Margin="20 20" HorizontalAlignment="Right" VerticalAlignment="Bottom">
+                <StackPanel Margin="20 20" HorizontalAlignment="Right" VerticalAlignment="Bottom" Orientation="Horizontal">
+                    <Button Name="btnExport" 
+                    Style="{StaticResource RoundedButtonGreen}"
+                    Content="Exportar" 
+                    HorizontalAlignment="Left" 
+                    Height="50" 
+                    Margin="10 0"
+                    Padding="10 0" 
+                    Click="btnExport_Click"/>
+                    
                     <Button Name="btnCheckGraph" 
                     Style="{StaticResource RoundedButtonBlue}"
                     Content="Graficar seleccionado" 

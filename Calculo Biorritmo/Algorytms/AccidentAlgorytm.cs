@@ -36,13 +36,11 @@ namespace Calculo_Biorritmo.Algorytms
 
                 var isFisicCritic = calculateCritics(BiorritmoFisico);
                 var isEmotionalCritic = calculateCritics(BiorritmoEmocional);
-                var isIntuitionalCritic = calculateCritics(BiorritmoIntelectual);
-                var isIntelectualCritic = calculateCritics(BiorritmoIntuicional);
+                var isIntuitionalCritic = calculateCritics(BiorritmoIntuicional);
+                var isIntelectualCritic = calculateCritics(BiorritmoIntelectual); 
 
                 if (isFisicCritic != null || isEmotionalCritic != null || isIntuitionalCritic != null || isIntelectualCritic != null)
                 {
-                    if (Empleado.curp != "RERM631201NZK4E")
-                        Console.Write("");
                     EmployeesOnDanger.Add(
                         new EmployeesDataVM(Empleado.curp, 
                             BiorritmoFisico[CalculatedDay.today],
@@ -54,25 +52,7 @@ namespace Calculo_Biorritmo.Algorytms
                             BiorritmoIntuicional[CalculatedDay.today],
                             (isIntelectualCritic != null ? true : false)));
                 }
-
-
             }
-
-            //var totalFisico = RegistrosFisicos.Sum();
-            //var promedioFisico = totalFisico / RegistrosFisicos.Count;
-            //var totalEmocional = RegistrosEmocionales.Sum();
-            //var promedioEmocional = totalEmocional / RegistrosEmocionales.Count;
-            //var totalIntelectual= RegistrosIntelectuales.Sum();
-            //var promedioIntelectual = totalIntelectual / RegistrosIntelectuales.Count;
-            //var totalIntuicional = RegistrosIntuicionales.Sum();
-            //var promedioIntuicional = totalIntuicional / RegistrosIntuicionales.Count;
-
-            //var promedios = new List<Double>();
-            //promedios.Add(promedioFisico);
-            //promedios.Add(promedioEmocional);
-            //promedios.Add(promedioIntelectual);
-            //promedios.Add(promedioIntuicional);
-
             return EmployeesOnDanger;
 
         }
@@ -222,10 +202,6 @@ namespace Calculo_Biorritmo.Algorytms
         {
             if (List[CalculatedDay.today] == 0)
                 return List[CalculatedDay.today];
-            //else if (List[0] == 0)
-            //    return List[1];
-            //else if (List[2] == 0)
-            //    return List[1];
             else if (List[CalculatedDay.yesterday] > 0 && List[CalculatedDay.today] < 0)
                 return List[CalculatedDay.today];
             else if (List[CalculatedDay.yesterday] < 0 && List[CalculatedDay.today] > 0)

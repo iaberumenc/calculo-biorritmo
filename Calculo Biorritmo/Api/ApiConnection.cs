@@ -23,7 +23,7 @@ namespace Calculo_Biorritmo.Api
                 using (var client = new HttpClient())
                 {
                     client.Timeout = new TimeSpan(0, 0, 5);
-                    client.BaseAddress = new Uri(urls.base_url);
+                    client.BaseAddress = new Uri(urls.base_url());
                     var result = await client.GetAsync("health/");
                     return result.IsSuccessStatusCode;
                 }
@@ -44,7 +44,7 @@ namespace Calculo_Biorritmo.Api
             {
                 using (var client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri(urls.base_url);
+                    client.BaseAddress = new Uri(urls.base_url());
                     var result = await client.GetStringAsync("employees/");
                     employees = JsonConvert.DeserializeObject<List<EmployeeContract>>(result);
                     return employees;
@@ -64,7 +64,7 @@ namespace Calculo_Biorritmo.Api
             {
                 using (var client = new HttpClient())
                 {
-                    client.BaseAddress = new Uri(urls.base_url);
+                    client.BaseAddress = new Uri(urls.base_url());
                     var result = await client.GetStringAsync("accidents/");
                     accidents = JsonConvert.DeserializeObject<List<AccidentContract>>(result);
                     return accidents;
@@ -162,7 +162,7 @@ namespace Calculo_Biorritmo.Api
                         var json = JsonConvert.SerializeObject(accidentContract);
                         var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
                         client.Timeout = new TimeSpan(0, 0, 5);
-                        client.BaseAddress = new Uri(urls.base_url);
+                        client.BaseAddress = new Uri(urls.base_url());
                         var result = await client.PostAsync("accidents/", stringContent);
                         var contents = await result.Content.ReadAsStringAsync();
                         return result.IsSuccessStatusCode;
@@ -193,7 +193,7 @@ namespace Calculo_Biorritmo.Api
                         var json = JsonConvert.SerializeObject(employeeContract);
                         var stringContent = new StringContent(json, UnicodeEncoding.UTF8, "application/json");
                         client.Timeout = new TimeSpan(0, 0, 5);
-                        client.BaseAddress = new Uri(urls.base_url);
+                        client.BaseAddress = new Uri(urls.base_url());
                         var result = await client.PostAsync("employees/", stringContent);
                         var contents = await result.Content.ReadAsStringAsync();
                         return result.IsSuccessStatusCode;
@@ -229,7 +229,7 @@ namespace Calculo_Biorritmo.Api
                         employee = ctx.employees.Where(x => x.id == item.id_Object).FirstOrDefault();
                         if (employee != null)
                         {
-                            if(!RegisterEmployee(employee).GetAwaiter().GetResult())
+                            if(!await RegisterEmployee(employee))
                                 return false;
                             ctx.pendingSyncs.Attach(item);
                             ctx.pendingSyncs.Remove(item);
@@ -250,7 +250,7 @@ namespace Calculo_Biorritmo.Api
                         accident = ctx.accidents.Where(x => x.id == item.id_Object).FirstOrDefault();
                         if (accident != null)
                         {
-                            if (!RegisterAccident(accident).GetAwaiter().GetResult())
+                            if (!await RegisterAccident(accident))
                                 return false;
                             ctx.pendingSyncs.Attach(item);
                             ctx.pendingSyncs.Remove(item);
